@@ -1,0 +1,89 @@
+# SPOT - Network Configuration
+
+# Example configuration
+
+network:
+
+# Available modes:
+
+# direct
+
+# proxy
+
+# tor
+
+# whonix
+
+mode: "whonix"
+
+# Refuse to start network activity when the requested
+
+# network environment is unavailable.
+
+fail_closed: true
+
+# Prevent unexpected direct-network fallback.
+
+allow_fallback: false
+
+dns:
+# DNS should follow the selected network boundary.
+mode: "managed"
+
+```
+# Prevent DNS from bypassing the configured network path.
+prevent_leaks: true
+```
+
+firewall:
+enabled: true
+
+kill_switch:
+enabled: true
+
+health_check:
+enabled: true
+
+```
+# How often network health is checked.
+interval_seconds: 30
+```
+
+proxy:
+enabled: false
+host: ""
+port: 0
+
+tor:
+enabled: false
+
+# Tor should normally be managed by the operating
+
+# environment rather than SPOT itself.
+
+external: true
+
+whonix:
+enabled: true
+
+# Example only. Actual routing depends on the
+
+# Qubes/Whonix configuration.
+
+require_gateway: true
+require_workstation: true
+
+persona_networks:
+
+# Personas use the network policy assigned to them.
+
+isolated: true
+
+limits:
+max_requests_per_minute: 30
+max_bandwidth_mb_per_hour: 250
+
+safety:
+block_private_networks: true
+block_local_network_access: true
+block_unapproved_destinations: true
