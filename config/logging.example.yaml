@@ -1,0 +1,68 @@
+# SPOT - Logging Configuration
+
+# Example configuration
+
+logging:
+enabled: true
+
+# Normal default logging level.
+
+level: "INFO"
+
+directory: "~/.local/share/spot/logs"
+
+files:
+application: "spot.log"
+security: "security.log"
+audit: "audit.log"
+scheduler: "scheduler.log"
+
+rotation:
+enabled: true
+
+```
+# Rotate when a log reaches this size.
+max_size_mb: 10
+
+# Number of old log files to retain.
+backups: 5
+```
+
+privacy:
+# Avoid storing unnecessary sensitive information.
+redact_sensitive_data: true
+
+```
+redact_credentials: true
+redact_tokens: true
+redact_private_keys: true
+
+# Reduce unnecessary URL and network information.
+minimize_urls: true
+minimize_network_details: true
+```
+
+debug:
+# Debug logging should normally remain disabled.
+enabled: false
+
+remote:
+# SPOT does not send logs anywhere by default.
+enabled: false
+endpoint: ""
+
+audit:
+enabled: true
+
+```
+# Record important security and configuration events.
+record_configuration_changes: true
+record_persona_events: true
+record_network_events: true
+record_plugin_events: true
+record_emergency_stops: true
+```
+
+console:
+enabled: true
+level: "INFO"
