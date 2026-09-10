@@ -1,0 +1,59 @@
+# SPOT - Browser Configuration
+
+# Example configuration
+
+browser:
+enabled: true
+
+# Browser profiles are created separately for each persona.
+
+profile_directory: "~/.local/share/spot/browser"
+
+# Never import a user's personal browser profile.
+
+allow_personal_profile_import: false
+
+# Do not share browser state between personas.
+
+isolate_persona_profiles: true
+
+sessions:
+# Close browser sessions when the persona stops.
+close_on_persona_stop: true
+
+```
+# Remove temporary session state when appropriate.
+cleanup_temporary_state: true
+```
+
+state:
+cookies: true
+local_storage: true
+history: true
+cache: true
+
+privacy:
+clear_on_exit: false
+minimize_history: true
+
+extensions:
+enabled: false
+
+network:
+# Browser traffic must use the SPOT network engine.
+use_spot_network: true
+
+```
+# Do not allow the browser to bypass the configured
+# network boundary.
+prevent_direct_connections: true
+```
+
+limits:
+max_browser_instances: 3
+max_session_minutes: 60
+
+safety:
+block_file_uploads: true
+block_personal_profile_access: true
+block_credential_storage: true
