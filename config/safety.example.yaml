@@ -1,0 +1,84 @@
+# SPOT - Safety Configuration
+
+# Example configuration
+
+safety:
+enabled: true
+
+# Stop activity when safety conditions are violated.
+
+fail_closed: true
+
+emergency_stop:
+enabled: true
+
+credentials:
+# SPOT must never use real credentials.
+allow_real_credentials: false
+allow_password_storage: false
+allow_token_storage: false
+
+personal_data:
+# Prevent access to unrelated personal data.
+allow_personal_files: false
+allow_personal_browser_profiles: false
+allow_personal_accounts: false
+
+network:
+# Prevent unrestricted network behavior.
+allow_unrestricted_network: false
+allow_network_scanning: false
+allow_denial_of_service: false
+
+activities:
+allow_spam: false
+allow_bulk_messaging: false
+allow_harassment: false
+allow_fraud: false
+allow_credential_theft: false
+allow_authentication_bypass: false
+allow_security_control_bypass: false
+
+personas:
+# Prevent synthetic personas from accessing each
+# other's private state.
+isolate_personas: true
+
+```
+max_concurrent: 3
+```
+
+plugins:
+# Plugins start with no additional privileges.
+default_permissions: "deny"
+
+```
+allow_filesystem_access: false
+allow_credentials: false
+allow_qbes_management: false
+```
+
+resources:
+max_cpu_percent: 80
+max_memory_mb: 4096
+max_runtime_minutes: 60
+
+activity_limits:
+max_activities_per_session: 10
+max_requests_per_minute: 30
+max_bandwidth_mb_per_hour: 250
+
+domains:
+# Optional destination controls.
+use_allowlist: false
+allowlist: []
+
+```
+# Explicitly blocked destination categories can be
+# implemented by the activity/network engines.
+blocklist: []
+```
+
+logging:
+log_safety_events: true
+log_blocked_actions: true
