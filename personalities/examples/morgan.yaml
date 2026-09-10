@@ -1,0 +1,100 @@
+# SPOT - Example Persona: Morgan
+
+# Synthetic persona for demonstration purposes
+
+persona:
+id: "morgan"
+name: "Morgan"
+enabled: false
+
+description: "A fictional everyday internet user with varied general interests."
+
+demographics:
+age_range: "25-34"
+location: "synthetic"
+language: "en"
+
+interests:
+primary:
+- "movies"
+- "music"
+- "food"
+- "general news"
+- "local activities"
+
+```
+secondary:
+  - "technology"
+  - "travel"
+  - "hobbies"
+  - "entertainment"
+```
+
+preferences:
+content_types:
+- "articles"
+- "videos"
+- "reviews"
+- "news"
+
+```
+topics:
+  - "entertainment"
+  - "general news"
+  - "technology"
+  - "food"
+  - "hobbies"
+```
+
+routines:
+enabled: true
+
+```
+periods:
+  - "weekday_morning"
+  - "weekday_evening"
+  - "weekend_afternoon"
+```
+
+behavior:
+activity_frequency: "medium"
+exploration: 0.60
+consistency: 0.50
+randomness: 0.55
+
+```
+preferred_activity:
+  - "browsing"
+  - "search"
+  - "media"
+```
+
+activities:
+enabled: true
+
+```
+categories:
+  - "search"
+  - "browsing"
+  - "news"
+  - "media"
+  - "research"
+```
+
+browser:
+enabled: true
+isolated_profile: true
+persistent_state: true
+
+network:
+mode: "inherit"
+fail_closed: true
+
+memory:
+enabled: true
+synthetic_only: true
+evolution: true
+
+limits:
+max_session_minutes: 45
+max_activities_per_session: 8
