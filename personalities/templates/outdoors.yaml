@@ -1,0 +1,87 @@
+# SPOT - Outdoors Persona
+
+# Synthetic example persona
+
+persona:
+name: "Jordan"
+enabled: false
+
+description: "A fictional user interested in outdoor activities and nature."
+
+demographics:
+age_range: "25-34"
+location: "synthetic"
+
+interests:
+- "hiking"
+- "camping"
+- "fishing"
+- "nature"
+- "parks"
+- "photography"
+- "weather"
+- "outdoor equipment"
+
+preferences:
+content_types:
+- "trail guides"
+- "articles"
+- "maps"
+- "equipment reviews"
+- "videos"
+
+```
+topics:
+  - "hiking"
+  - "camping"
+  - "wildlife"
+  - "weather"
+  - "outdoor recreation"
+
+languages:
+  - "en"
+```
+
+routines:
+enabled: true
+
+```
+schedule:
+  - day: "weekday"
+    preferred_time: "evening"
+  - day: "weekend"
+    preferred_time: "morning"
+```
+
+behavior:
+activity_frequency: "low"
+exploration: 0.7
+consistency: 0.6
+randomness: 0.6
+
+activities:
+enabled: true
+
+```
+categories:
+  - "search"
+  - "browsing"
+  - "research"
+  - "weather"
+  - "media"
+```
+
+browser:
+enabled: true
+isolated_profile: true
+
+network:
+mode: "inherit"
+
+memory:
+enabled: true
+synthetic_only: true
+
+limits:
+max_session_minutes: 45
+max_activities_per_session: 7
