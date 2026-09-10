@@ -1,0 +1,84 @@
+# SPOT - Scheduler Configuration
+
+# Example configuration
+
+scheduler:
+enabled: true
+
+# Maximum personas running simultaneously.
+
+max_concurrent_personas: 3
+
+# Maximum number of activities a persona may perform
+
+# during one scheduled session.
+
+max_activities_per_session: 10
+
+# Maximum runtime for one session in minutes.
+
+max_session_minutes: 60
+
+# Allow controlled randomization of activity timing.
+
+randomization:
+enabled: true
+
+```
+# Maximum random delay in minutes.
+max_delay_minutes: 15
+```
+
+# Do not start activities when the configured network
+
+# environment is unavailable.
+
+require_network: true
+
+# Do not automatically resume after an emergency stop.
+
+resume_after_emergency_stop: false
+
+# Default schedule.
+
+default_schedule:
+enabled: false
+days:
+- monday
+- tuesday
+- wednesday
+- thursday
+- friday
+
+```
+start_time: "09:00"
+end_time: "17:00"
+```
+
+personas:
+
+# Persona-specific schedules can override the defaults.
+
+# Example:
+
+#
+
+# morgan:
+
+# enabled: true
+
+# days:
+
+# - monday
+
+# - wednesday
+
+# - friday
+
+# start_time: "18:00"
+
+# end_time: "21:00"
+
+limits:
+max_starts_per_hour: 10
+max_total_runtime_minutes_per_day: 240
