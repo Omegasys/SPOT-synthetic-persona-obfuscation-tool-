@@ -1,0 +1,73 @@
+# SPOT - Main Configuration
+
+# Example configuration
+
+#
+
+# Copy this file to your local configuration directory and
+
+# adjust the settings for your environment.
+
+spot:
+name: "SPOT"
+version: "0.1.0"
+
+# Start SPOT automatically when the user logs in.
+
+autostart: false
+
+# Default behavior for newly created personas.
+
+default_persona_enabled: false
+
+# Maximum number of personas that may run at the same time.
+
+max_concurrent_personas: 3
+
+# Run in safe mode.
+
+safe_mode: true
+
+# Enable the emergency-stop system.
+
+emergency_stop: true
+
+personas:
+directory: "~/.config/spot/personas"
+
+scheduler:
+config: "~/.config/spot/scheduler.yaml"
+
+network:
+config: "~/.config/spot/network.yaml"
+
+browser:
+config: "~/.config/spot/browser.yaml"
+
+safety:
+config: "~/.config/spot/safety.yaml"
+
+logging:
+config: "~/.config/spot/logging.yaml"
+
+storage:
+directory: "~/.local/share/spot"
+
+# Minimize persistent activity data.
+
+minimize_history: true
+
+# Encrypt sensitive local state when supported.
+
+encryption: true
+
+plugins:
+enabled: true
+directory: "~/.local/share/spot/plugins"
+
+analytics:
+enabled: true
+
+# Keep analytics local.
+
+remote_reporting: false
