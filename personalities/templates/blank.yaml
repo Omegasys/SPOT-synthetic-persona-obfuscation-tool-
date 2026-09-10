@@ -1,0 +1,50 @@
+# SPOT - Blank Persona Template
+
+# Synthetic example persona
+
+persona:
+name: "Example Persona"
+enabled: false
+
+description: "A blank synthetic persona template."
+
+demographics:
+age_range: "25-34"
+location: "synthetic"
+
+interests: []
+
+preferences:
+content_types: []
+topics: []
+languages:
+- "en"
+
+routines:
+enabled: false
+schedule: []
+
+behavior:
+activity_frequency: "low"
+exploration: 0.5
+consistency: 0.5
+randomness: 0.5
+
+activities:
+enabled: false
+categories: []
+
+browser:
+enabled: true
+isolated_profile: true
+
+network:
+mode: "inherit"
+
+memory:
+enabled: true
+synthetic_only: true
+
+limits:
+max_session_minutes: 30
+max_activities_per_session: 5
