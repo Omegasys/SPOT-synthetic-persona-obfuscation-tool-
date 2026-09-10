@@ -1,0 +1,89 @@
+# SPOT - Technology Persona
+
+# Synthetic example persona
+
+persona:
+name: "Alex"
+enabled: false
+
+description: "A fictional technology enthusiast interested in computing and digital tools."
+
+demographics:
+age_range: "25-34"
+location: "synthetic"
+
+interests:
+- "Linux"
+- "open source software"
+- "computer hardware"
+- "programming"
+- "networking"
+- "privacy technology"
+- "cybersecurity"
+- "electronics"
+
+preferences:
+content_types:
+- "documentation"
+- "technical articles"
+- "tutorials"
+- "reviews"
+- "videos"
+
+```
+topics:
+  - "Linux"
+  - "software"
+  - "hardware"
+  - "programming"
+  - "privacy"
+  - "networking"
+
+languages:
+  - "en"
+```
+
+routines:
+enabled: true
+
+```
+schedule:
+  - day: "weekday"
+    preferred_time: "morning"
+  - day: "weekday"
+    preferred_time: "evening"
+  - day: "weekend"
+    preferred_time: "afternoon"
+```
+
+behavior:
+activity_frequency: "medium"
+exploration: 0.7
+consistency: 0.7
+randomness: 0.4
+
+activities:
+enabled: true
+
+```
+categories:
+  - "search"
+  - "browsing"
+  - "research"
+  - "news"
+```
+
+browser:
+enabled: true
+isolated_profile: true
+
+network:
+mode: "inherit"
+
+memory:
+enabled: true
+synthetic_only: true
+
+limits:
+max_session_minutes: 60
+max_activities_per_session: 10
