@@ -1,0 +1,103 @@
+# SPOT - Example Persona: Alex
+
+# Synthetic persona for demonstration purposes
+
+persona:
+id: "alex"
+name: "Alex"
+enabled: false
+
+description: "A fictional technology enthusiast who regularly explores computing and open-source software."
+
+demographics:
+age_range: "25-34"
+location: "synthetic"
+language: "en"
+
+interests:
+primary:
+- "Linux"
+- "open source software"
+- "computer hardware"
+- "programming"
+- "networking"
+- "privacy technology"
+
+```
+secondary:
+  - "electronics"
+  - "cybersecurity"
+  - "operating systems"
+  - "self-hosting"
+```
+
+preferences:
+content_types:
+- "documentation"
+- "technical articles"
+- "tutorials"
+- "reviews"
+- "videos"
+
+```
+topics:
+  - "Linux"
+  - "open source"
+  - "hardware"
+  - "programming"
+  - "privacy"
+  - "networking"
+```
+
+routines:
+enabled: true
+
+```
+periods:
+  - "weekday_morning"
+  - "weekday_evening"
+  - "weekend_afternoon"
+```
+
+behavior:
+activity_frequency: "medium"
+exploration: 0.75
+consistency: 0.70
+randomness: 0.40
+
+```
+preferred_activity:
+  - "research"
+  - "search"
+  - "browsing"
+```
+
+activities:
+enabled: true
+
+```
+categories:
+  - "search"
+  - "browsing"
+  - "research"
+  - "news"
+  - "media"
+```
+
+browser:
+enabled: true
+isolated_profile: true
+persistent_state: true
+
+network:
+mode: "inherit"
+fail_closed: true
+
+memory:
+enabled: true
+synthetic_only: true
+evolution: true
+
+limits:
+max_session_minutes: 60
+max_activities_per_session: 10
