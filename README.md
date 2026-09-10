@@ -1,2 +1,2 @@
 # SPOT-synthetic-persona-obfuscation-tool-
-This tool is supposed to be designed to create artificial personas that will muddy up all traces that is on that your digital footprint to OU skates what attackers
+this tool is designed to create a false fingerprint on your Lennox system to obfuscate. Any person search that any person or organization might look for.
