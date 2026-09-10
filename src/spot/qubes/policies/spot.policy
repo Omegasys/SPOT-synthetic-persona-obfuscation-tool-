@@ -1,0 +1,95 @@
+# SPOT Qubes OS RPC policy
+#
+# This file documents the intended minimum RPC boundary.
+# It is deliberately restrictive.
+#
+# SPOT should NOT receive unrestricted dom0 access.
+#
+# Exact syntax may vary with the Qubes OS version and RPC
+# service definitions installed on the system. This file is
+# therefore treated as a policy specification/template and
+# should be reviewed before installation.
+#
+# Security goals:
+#
+#   1. Default deny.
+#   2. No direct dom0 administration.
+#   3. No unrestricted VM creation/removal.
+#   4. No unrestricted device attachment.
+#   5. No credential access.
+#   6. No arbitrary file access.
+#   7. Permit only narrowly scoped SPOT services.
+#
+# Intended SPOT service classes:
+#
+#   spot.SessionInfo
+#   spot.NetworkStatus
+#   spot.PersonaStatus
+#   spot.DisposableStatus
+#
+# These services should expose status and narrowly scoped
+# operations rather than arbitrary Qubes administration.
+#
+# Example policy concept:
+#
+#   service: spot.SessionInfo
+#       allow: spot-client
+#
+#   service: spot.NetworkStatus
+#       allow: spot-client
+#
+#   service: spot.PersonaStatus
+#       allow: spot-client
+#
+#   service: spot.DisposableStatus
+#       allow: spot-client
+#
+# Everything else:
+#
+#   deny
+#
+# Particularly sensitive Qubes administration operations should
+# remain unavailable to the normal SPOT process:
+#
+#   admin.vm.Start
+#   admin.vm.Kill
+#   admin.vm.Remove
+#   admin.vm.device.Attach
+#   admin.vm.device.Detach
+#   admin.vm.volume.Import
+#   admin.vm.volume.Resize
+#   admin.vm.property.Set
+#
+# If a future SPOT feature requires one of these operations,
+# create a dedicated narrowly scoped RPC service instead of
+# granting the generic administrative service.
+#
+# Example:
+#
+#   BAD:
+#       SPOT -> unrestricted admin.vm.*
+#
+#   GOOD:
+#       SPOT -> spot.CreateDisposable
+#             -> restricted helper
+#             -> one explicitly validated Qube operation
+#
+# The restricted helper should validate:
+#
+#   - persona identity
+#   - Qube name
+#   - template
+#   - network assignment
+#   - resource limits
+#   - disposable status
+#   - emergency-stop state
+#
+# It should reject:
+#
+#   - dom0 targets
+#   - arbitrary shell commands
+#   - arbitrary RPC forwarding
+#   - arbitrary device attachment
+#   - arbitrary file access
+#   - credential operations
+#   - policy modification
