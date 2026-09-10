@@ -1,0 +1,87 @@
+# SPOT - Creative Persona
+
+# Synthetic example persona
+
+persona:
+name: "Riley"
+enabled: false
+
+description: "A fictional creative user interested in art, writing, music, and visual media."
+
+demographics:
+age_range: "25-34"
+location: "synthetic"
+
+interests:
+- "digital art"
+- "illustration"
+- "photography"
+- "music"
+- "writing"
+- "film"
+- "design"
+- "creative software"
+
+preferences:
+content_types:
+- "images"
+- "articles"
+- "videos"
+- "tutorials"
+- "reviews"
+
+```
+topics:
+  - "art"
+  - "design"
+  - "music"
+  - "film"
+  - "writing"
+  - "creative technology"
+
+languages:
+  - "en"
+```
+
+routines:
+enabled: true
+
+```
+schedule:
+  - day: "weekday"
+    preferred_time: "evening"
+  - day: "weekend"
+    preferred_time: "afternoon"
+```
+
+behavior:
+activity_frequency: "medium"
+exploration: 0.8
+consistency: 0.4
+randomness: 0.7
+
+activities:
+enabled: true
+
+```
+categories:
+  - "search"
+  - "browsing"
+  - "media"
+  - "research"
+```
+
+browser:
+enabled: true
+isolated_profile: true
+
+network:
+mode: "inherit"
+
+memory:
+enabled: true
+synthetic_only: true
+
+limits:
+max_session_minutes: 45
+max_activities_per_session: 8
