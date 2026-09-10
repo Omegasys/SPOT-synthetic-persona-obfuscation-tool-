@@ -1,0 +1,84 @@
+# SPOT - Casual User Persona
+
+# Synthetic example persona
+
+persona:
+name: "Morgan"
+enabled: false
+
+description: "A fictional everyday internet user with varied general interests."
+
+demographics:
+age_range: "25-34"
+location: "synthetic"
+
+interests:
+- "news"
+- "movies"
+- "music"
+- "food"
+- "local activities"
+- "general technology"
+
+preferences:
+content_types:
+- "articles"
+- "videos"
+- "reviews"
+
+```
+topics:
+  - "entertainment"
+  - "general news"
+  - "technology"
+  - "hobbies"
+
+languages:
+  - "en"
+```
+
+routines:
+enabled: true
+
+```
+schedule:
+  - day: "weekday"
+    preferred_time: "morning"
+  - day: "weekday"
+    preferred_time: "evening"
+  - day: "weekend"
+    preferred_time: "afternoon"
+```
+
+behavior:
+activity_frequency: "medium"
+exploration: 0.6
+consistency: 0.5
+randomness: 0.5
+
+activities:
+enabled: true
+
+```
+categories:
+  - "search"
+  - "browsing"
+  - "news"
+  - "media"
+  - "research"
+```
+
+browser:
+enabled: true
+isolated_profile: true
+
+network:
+mode: "inherit"
+
+memory:
+enabled: true
+synthetic_only: true
+
+limits:
+max_session_minutes: 45
+max_activities_per_session: 8
