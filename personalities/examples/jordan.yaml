@@ -1,0 +1,101 @@
+# SPOT - Example Persona: Jordan
+
+# Synthetic persona for demonstration purposes
+
+persona:
+id: "jordan"
+name: "Jordan"
+enabled: false
+
+description: "A fictional outdoors enthusiast interested in nature, recreation, and outdoor equipment."
+
+demographics:
+age_range: "25-34"
+location: "synthetic"
+language: "en"
+
+interests:
+primary:
+- "hiking"
+- "camping"
+- "nature"
+- "parks"
+- "weather"
+
+```
+secondary:
+  - "fishing"
+  - "photography"
+  - "wildlife"
+  - "outdoor equipment"
+  - "maps"
+```
+
+preferences:
+content_types:
+- "trail guides"
+- "articles"
+- "maps"
+- "equipment reviews"
+- "videos"
+
+```
+topics:
+  - "hiking"
+  - "camping"
+  - "wildlife"
+  - "weather"
+  - "outdoor recreation"
+```
+
+routines:
+enabled: true
+
+```
+periods:
+  - "weekday_evening"
+  - "weekend_morning"
+```
+
+behavior:
+activity_frequency: "low"
+exploration: 0.75
+consistency: 0.60
+randomness: 0.65
+
+```
+preferred_activity:
+  - "research"
+  - "search"
+  - "browsing"
+```
+
+activities:
+enabled: true
+
+```
+categories:
+  - "search"
+  - "browsing"
+  - "research"
+  - "weather"
+  - "media"
+```
+
+browser:
+enabled: true
+isolated_profile: true
+persistent_state: true
+
+network:
+mode: "inherit"
+fail_closed: true
+
+memory:
+enabled: true
+synthetic_only: true
+evolution: true
+
+limits:
+max_session_minutes: 45
+max_activities_per_session: 7
