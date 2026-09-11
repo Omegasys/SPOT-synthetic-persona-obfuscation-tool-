@@ -1,0 +1,51 @@
+# SPOT Search Activity Plugin
+
+enabled: false
+
+# Maximum length of a synthetic search query.
+max_query_length: 500
+
+# Maximum number of results requested from a provider adapter.
+max_results: 10
+
+# Search activity is synthetic by design.
+synthetic_only: true
+
+# The search plugin does not choose its own network route.
+network:
+  use_spot_network_policy: true
+  require_approved_network: true
+  fail_closed: true
+  direct_fallback: false
+
+# Do not import personal search history or browser profiles.
+privacy:
+  import_personal_history: false
+  import_personal_profile: false
+  use_credentials: false
+  store_credentials: false
+
+# Keep requests bounded.
+limits:
+  max_queries_per_session: 10
+  max_queries_per_minute: 5
+
+# Provider-specific implementations can be added later.
+provider:
+  name: null
+  enabled: false
+
+# Local activity metadata only.
+logging:
+  enabled: true
+  include_query: false
+  include_persona_id: true
+  redact_sensitive_values: true
+
+# Emergency stop has priority over plugin activity.
+safety:
+  respect_emergency_stop: true
+  respect_activity_limits: true
+  respect_rate_limits: true
+  respect_domain_allowlist: true
+  respect_domain_blocklist: true
