@@ -1,0 +1,64 @@
+# SPOT DNS Activity Plugin
+
+enabled: false
+
+synthetic_only: true
+
+limits:
+  max_queries: 100
+  max_queries_per_minute: 30
+  max_domain_length: 253
+
+record_types:
+  allowed:
+    - A
+    - AAAA
+    - CNAME
+    - MX
+    - NS
+    - TXT
+
+network:
+  use_spot_network_policy: true
+  require_approved_network: true
+  fail_closed: true
+
+  # Never silently use the host resolver.
+  host_dns_fallback: false
+  direct_fallback: false
+
+  # DNS must remain inside the configured SPOT network topology.
+  prevent_dns_bypass: true
+
+privacy:
+  minimize_logging: true
+  store_query_history: false
+  store_answers: false
+
+  # Do not associate DNS activity with personal identity.
+  personal_data_access: false
+  credential_access: false
+
+safety:
+  block_private_targets: true
+  block_loopback: true
+  block_link_local: true
+  block_multicast: true
+  block_reserved: true
+  block_unspecified: true
+
+  # These activities are explicitly prohibited.
+  dns_scanning: false
+  bulk_queries: false
+  amplification: false
+  unrestricted_resolution: false
+
+logging:
+  enabled: true
+  log_domains: false
+  log_answers: false
+  log_persona_id: true
+  redact_sensitive_values: true
+
+emergency_stop:
+  respect: true
