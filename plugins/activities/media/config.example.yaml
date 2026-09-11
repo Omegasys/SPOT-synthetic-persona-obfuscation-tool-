@@ -1,0 +1,75 @@
+# SPOT Media Activity Plugin
+
+enabled: false
+
+synthetic_only: true
+
+media_types:
+  video:
+    enabled: true
+
+  audio:
+    enabled: true
+
+  music:
+    enabled: true
+
+  podcast:
+    enabled: true
+
+  image:
+    enabled: true
+
+  stream:
+    enabled: true
+
+limits:
+  max_duration_seconds: 3600
+  max_items: 5
+  max_sessions: 3
+  max_requests_per_minute: 5
+
+network:
+  use_spot_network_policy: true
+  require_approved_network: true
+  fail_closed: true
+  direct_fallback: false
+  prevent_dns_bypass: true
+
+privacy:
+  personal_data_access: false
+  credential_access: false
+
+  import_watch_history: false
+  import_playlists: false
+  import_subscriptions: false
+  import_personal_media_library: false
+  import_personal_browser_profile: false
+
+storage:
+  store_media_files: false
+  store_full_media_metadata: false
+  store_playback_history: false
+
+automation:
+  unrestricted_crawling: false
+  recursive_crawling: false
+  bulk_requests: false
+  automatic_downloads: false
+  automatic_uploads: false
+
+logging:
+  enabled: true
+  log_targets: false
+  log_urls: false
+  log_titles: false
+  log_persona_id: true
+  redact_sensitive_values: true
+
+safety:
+  respect_emergency_stop: true
+  respect_activity_limits: true
+  respect_rate_limits: true
+  respect_bandwidth_limits: true
+  respect_domain_allowlist: true
+  respect_domain_blocklist: true
