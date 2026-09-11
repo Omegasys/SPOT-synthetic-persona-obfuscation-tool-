@@ -1,0 +1,97 @@
+# SPOT Qubes OS example configuration.
+#
+# This configuration assumes SPOT personas run in isolated Qubes
+# environments and use Whonix for network access.
+
+spot:
+  name: "qubes-example"
+  version: 1
+
+  enabled: true
+  autostart: false
+
+  safe_mode: true
+  emergency_stop: true
+
+  max_concurrent_personas: 3
+
+  isolation:
+    backend: "qubes"
+
+    separate_qubes: true
+    separate_filesystems: true
+    separate_browser_profiles: true
+    separate_network_assignments: true
+
+    prevent_cross_persona_access: true
+
+    allow_dom0_access: false
+    allow_unrestricted_rpc: false
+    allow_personal_data: false
+    allow_credentials: false
+
+  personas:
+    definition_file: "./examples/qubes/personas.yaml"
+
+  network:
+    mode: "whonix"
+
+    gateway: "sys-whonix"
+
+    fail_closed: true
+    allow_direct_fallback: false
+    prevent_dns_bypass: true
+
+    require_whonix_gateway: true
+    require_tor: true
+
+    kill_switch: true
+
+  browser:
+    enabled: true
+    isolated_profiles: true
+    persistent_profiles: true
+
+    allow_personal_profile_import: false
+    allow_credentials: false
+    allow_uploads: false
+    allow_downloads: false
+
+  scheduler:
+    enabled: true
+    max_concurrent: 3
+    max_per_persona: 1
+
+    randomized_delays: true
+    max_random_delay_seconds: 900
+
+  qubes:
+    controller_service: "org.spot.Controller"
+    persona_service: "org.spot.Persona"
+    network_service: "org.spot.Network"
+
+    default_persona_template: "spot-persona"
+    disposable_template: "spot-disposable"
+
+    require_explicit_rpc_policy: true
+    default_deny_rpc: true
+
+    allow_dom0_management: false
+
+  storage:
+    encrypted: true
+    local_only: true
+    minimize_sensitive_data: true
+
+  plugins:
+    enabled: false
+
+  analytics:
+    enabled: true
+    local_only: true
+    remote_reporting: false
+
+  logging:
+    level: "INFO"
+    local_only: true
+    redact_sensitive_data: true
