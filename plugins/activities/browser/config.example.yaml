@@ -1,0 +1,92 @@
+# SPOT Browser Activity Plugin
+
+enabled: false
+
+synthetic_only: true
+
+limits:
+  max_pages: 10
+  max_actions: 25
+  max_sessions: 3
+
+browser:
+  isolated_profile: true
+  separate_persona_profiles: true
+  close_session_on_stop: true
+  cleanup_temporary_state: true
+
+  cookies:
+    isolated: true
+    import_personal_cookies: false
+
+  storage:
+    isolated: true
+    import_personal_storage: false
+
+  history:
+    isolated: true
+    import_personal_history: false
+
+  credentials:
+    use_password_store: false
+    import_passwords: false
+    save_passwords: false
+
+  extensions:
+    enabled: false
+    import_personal_extensions: false
+
+  downloads:
+    enabled: false
+
+  uploads:
+    enabled: false
+
+network:
+  use_spot_network_policy: true
+  require_approved_network: true
+  fail_closed: true
+  direct_fallback: false
+  prevent_dns_bypass: true
+
+domains:
+  use_spot_allowlist: true
+  use_spot_blocklist: true
+
+privacy:
+  personal_profile_import: false
+  personal_data_access: false
+  credential_access: false
+
+automation:
+  enabled: true
+  max_actions: 25
+  max_pages: 10
+
+  forms:
+    enabled: false
+
+  uploads:
+    enabled: false
+
+  authentication:
+    enabled: false
+
+  captcha_interaction:
+    enabled: false
+
+logging:
+  enabled: true
+  log_urls: false
+  log_page_titles: false
+  log_persona_id: true
+  redact_sensitive_values: true
+
+safety:
+  respect_emergency_stop: true
+  respect_activity_limits: true
+  respect_rate_limits: true
+  respect_bandwidth_limits: true
+  respect_domain_allowlist: true
+  respect_domain_blocklist: true
+  require_isolated_browser: true
