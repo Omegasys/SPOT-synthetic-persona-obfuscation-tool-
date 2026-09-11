@@ -1,0 +1,54 @@
+id: activity-news
+name: News Activity Plugin
+version: 0.1.0
+
+category: activities
+subcategory: news
+
+entrypoint: plugin.py
+
+description: >
+  Provides bounded, provider-neutral synthetic news-reading activity.
+
+enabled_by_default: false
+
+capabilities:
+  - activity.news
+
+permissions:
+  network: false
+  filesystem: false
+  process: false
+  browser: false
+  credentials: false
+  personal_data: false
+  qubes_rpc: false
+  privileged: false
+
+security:
+  synthetic_only: true
+  unrestricted_network: false
+  unrestricted_filesystem: false
+  credential_access: false
+  personal_data_access: false
+  authentication_bypass: false
+  captcha_bypass: false
+  security_control_bypass: false
+  unrestricted_crawling: false
+  bulk_requests: false
+
+limits:
+  max_articles: 5
+  max_sources: 3
+  max_topic_length: 200
+
+network:
+  use_spot_network_policy: true
+  require_approved_network: true
+  fail_closed: true
+  direct_fallback: false
+
+content:
+  allow_personalized_sensitive_topics: false
+  store_full_articles: false
+  store_article_content: false
