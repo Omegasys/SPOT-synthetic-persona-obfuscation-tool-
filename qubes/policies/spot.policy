@@ -1,0 +1,31 @@
+# SPOT Qubes RPC policy
+#
+# Default: deny.
+#
+# Replace the example source/target qube names with the actual qubes
+# used by the deployment.
+#
+# Do not grant unrestricted dom0 administration to SPOT.
+
+# Controller -> Persona
+org.spot.Persona     spot-controller    spot-persona-*    allow
+org.spot.Persona     spot-controller    spot-disposable-*    allow
+
+# Controller -> Network
+org.spot.Network     spot-controller    spot-network    allow
+
+# Controller status/control
+org.spot.Controller  spot-controller    spot-controller    allow
+
+# Persona -> Controller
+org.spot.Controller  spot-persona-*      spot-controller    allow
+org.spot.Controller  spot-disposable-*  spot-controller    allow
+
+# Persona -> Network
+org.spot.Network     spot-persona-*      spot-network       allow
+org.spot.Network     spot-disposable-*  spot-network       allow
+
+# Explicitly deny access from unrelated qubes.
+org.spot.Controller  @anyvm             @anyvm             deny
+org.spot.Persona     @anyvm             @anyvm             deny
+org.spot.Network     @anyvm             @anyvm             deny
