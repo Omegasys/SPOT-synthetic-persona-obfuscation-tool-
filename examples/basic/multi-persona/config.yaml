@@ -1,0 +1,72 @@
+# SPOT multi-persona example.
+#
+# All personas are synthetic and isolated from one another.
+
+spot:
+  name: "multi-persona-example"
+  version: 1
+
+  enabled: true
+  autostart: false
+
+  safe_mode: true
+  emergency_stop: true
+
+  max_concurrent_personas: 3
+
+  personas:
+    directory: "./examples/multi-persona"
+
+    files:
+      - "persona-01.yaml"
+      - "persona-02.yaml"
+      - "persona-03.yaml"
+
+    isolation:
+      separate_storage: true
+      separate_browser_profiles: true
+      separate_sessions: true
+      prevent_cross_persona_access: true
+
+  storage:
+    directory: "./data/multi-persona"
+    encrypted: true
+    minimize_sensitive_data: true
+
+  browser:
+    enabled: true
+    isolated_profiles: true
+    import_personal_profile: false
+    allow_credentials: false
+    allow_uploads: false
+    allow_downloads: false
+    cleanup_on_stop: true
+
+  network:
+    mode: "whonix"
+    fail_closed: true
+    allow_fallback: false
+    prevent_dns_bypass: true
+    kill_switch: true
+
+    per_persona_isolation: true
+
+  scheduler:
+    enabled: true
+    max_concurrent: 3
+    max_per_persona: 1
+    randomized_delays: true
+    max_random_delay_seconds: 900
+
+  plugins:
+    enabled: false
+
+  analytics:
+    enabled: true
+    local_only: true
+    remote_reporting: false
+
+  logging:
+    level: "INFO"
+    local_only: true
+    redact_sensitive_data: true
