@@ -1,0 +1,62 @@
+id: activity-dns
+name: DNS Activity Plugin
+version: 0.1.0
+
+category: activities
+subcategory: dns
+
+entrypoint: plugin.py
+
+description: >
+  Provides bounded, policy-controlled synthetic DNS activity.
+
+enabled_by_default: false
+
+capabilities:
+  - activity.dns
+
+permissions:
+  network: false
+  filesystem: false
+  process: false
+  browser: false
+  credentials: false
+  personal_data: false
+  qubes_rpc: false
+  privileged: false
+
+security:
+  synthetic_only: true
+  unrestricted_network: false
+  unrestricted_filesystem: false
+  credential_access: false
+  personal_data_access: false
+  host_dns_fallback: false
+  dns_bypass: false
+  dns_scanning: false
+  bulk_requests: false
+  amplification: false
+
+record_types:
+  - A
+  - AAAA
+  - CNAME
+  - MX
+  - NS
+  - TXT
+
+limits:
+  max_queries: 100
+  max_domain_length: 253
+
+network:
+  use_spot_network_policy: true
+  require_approved_network: true
+  fail_closed: true
+  direct_fallback: false
+  prevent_host_dns_fallback: true
+
+privacy:
+  minimize_logging: true
+  store_query_history: false
+  store_answers: false
