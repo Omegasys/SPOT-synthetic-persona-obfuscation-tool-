@@ -1,0 +1,30 @@
+#!/bin/sh
+
+# SPOT Network Qubes RPC endpoint.
+#
+# This endpoint provides controlled interaction with SPOT's network
+# policy layer. It does not accept arbitrary firewall commands,
+# arbitrary interface commands, or arbitrary shell commands.
+
+set -eu
+
+REQUEST="$(cat)"
+
+case "$REQUEST" in
+    status)
+        exec /usr/bin/python3 -m spot network status
+        ;;
+
+    health)
+        exec /usr/bin/python3 -m spot network health
+        ;;
+
+    emergency-stop)
+        exec /usr/bin/python3 -m spot network emergency-stop
+        ;;
+
+    *)
+        echo "Denied: unknown SPOT network operation." >&2
+        exit 1
+        ;;
+esac
