@@ -1,0 +1,47 @@
+id: activity-search
+name: Search Activity Plugin
+version: 0.1.0
+
+category: activities
+subcategory: search
+
+entrypoint: plugin.py
+
+description: >
+  Provides bounded, provider-neutral synthetic search activity
+  for SPOT personas.
+
+enabled_by_default: false
+
+capabilities:
+  - activity.search
+
+permissions:
+  network: false
+  filesystem: false
+  process: false
+  browser: false
+  credentials: false
+  personal_data: false
+  qubes_rpc: false
+  privileged: false
+
+security:
+  synthetic_only: true
+  unrestricted_network: false
+  unrestricted_filesystem: false
+  credential_access: false
+  personal_data_access: false
+  authentication_bypass: false
+  captcha_bypass: false
+  security_control_bypass: false
+  bulk_requests: false
+
+limits:
+  max_query_length: 500
+  max_results: 10
+
+network:
+  direct_fallback: false
+  require_spot_network_policy: true
+  fail_closed: true
