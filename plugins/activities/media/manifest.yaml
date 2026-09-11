@@ -1,0 +1,64 @@
+id: activity-media
+name: Media Activity Plugin
+version: 0.1.0
+
+category: activities
+subcategory: media
+
+entrypoint: plugin.py
+
+description: >
+  Provides bounded, provider-neutral synthetic media activity.
+
+enabled_by_default: false
+
+capabilities:
+  - activity.media
+
+permissions:
+  network: false
+  filesystem: false
+  process: false
+  browser: false
+  credentials: false
+  personal_data: false
+  qubes_rpc: false
+  privileged: false
+
+security:
+  synthetic_only: true
+  unrestricted_network: false
+  unrestricted_filesystem: false
+  credential_access: false
+  personal_data_access: false
+  personal_media_access: false
+  authentication_bypass: false
+  captcha_bypass: false
+  security_control_bypass: false
+  bulk_requests: false
+
+media_types:
+  - video
+  - audio
+  - music
+  - podcast
+  - image
+  - stream
+
+limits:
+  max_duration_seconds: 3600
+  max_items: 5
+  max_target_length: 2000
+
+network:
+  use_spot_network_policy: true
+  require_approved_network: true
+  fail_closed: true
+  direct_fallback: false
+
+privacy:
+  import_watch_history: false
+  import_playlists: false
+  import_subscriptions: false
+  import_personal_media: false
+  use_credentials: false
