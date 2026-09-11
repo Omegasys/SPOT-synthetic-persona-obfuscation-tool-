@@ -1,0 +1,98 @@
+id: "persona-03"
+
+name: "Riley"
+
+description: "A synthetic creative-media enthusiast."
+
+synthetic_only: true
+enabled: true
+memory_enabled: true
+
+identity:
+  age_range: "20-29"
+  location: "US"
+  language: "en"
+  attributes:
+    - "synthetic"
+
+interests:
+  primary:
+    - "digital art"
+    - "music"
+    - "film"
+    - "writing"
+    - "design"
+
+  secondary:
+    - "photography"
+    - "illustration"
+    - "animation"
+    - "creative software"
+
+preferences:
+  content_types:
+    - "images"
+    - "videos"
+    - "music"
+    - "articles"
+
+  topics:
+    - "digital art"
+    - "film"
+    - "music"
+    - "design"
+    - "animation"
+
+  languages:
+    - "en"
+
+behavior:
+  activity_level: 0.55
+  exploration: 0.85
+  consistency: 0.40
+  randomness: 0.75
+  research_depth: 0.50
+  session_length: 0.50
+  topic_switching: 0.70
+
+  preferred_actions:
+    - "search"
+    - "browsing"
+    - "media"
+    - "research"
+
+routines:
+  - name: "afternoon"
+    days:
+      - "saturday"
+      - "sunday"
+    start_hour: 13
+    start_minute: 0
+    end_hour: 17
+    end_minute: 0
+
+  - name: "evening"
+    days:
+      - "monday"
+      - "tuesday"
+      - "wednesday"
+      - "thursday"
+    start_hour: 19
+    start_minute: 0
+    end_hour: 23
+    end_minute: 0
+
+limits:
+  max_session_seconds: 2700
+  max_activities: 8
+  max_browser_pages: 30
+
+network:
+  mode: "inherit"
+  fail_closed: true
+
+browser:
+  isolated: true
+  persistent: true
+  allow_credentials: false
+  allow_personal_profile_import: false
