@@ -1,0 +1,90 @@
+# SPOT network policy specification
+#
+# This file describes the intended firewall boundary for SPOT.
+# It is deliberately conservative and should be translated into the
+# firewall mechanism appropriate for the target Qubes release.
+#
+# Default policy: DENY.
+
+policy:
+  default: deny
+
+  fail_closed: true
+
+  direct_network_fallback: false
+
+  emergency_stop:
+    enabled: true
+    default_action: deny
+    block_new_connections: true
+    block_existing_managed_activity: true
+
+  dns:
+    allow_only_policy_managed_dns: true
+    block_direct_dns: true
+    block_private_destinations: true
+    block_loopback: true
+    block_link_local: true
+
+  destinations:
+    default: deny
+    allowlist_required: true
+
+  protocols:
+    default: deny
+
+    allowed:
+      - tcp
+      - udp
+
+  ports:
+    default: deny
+
+    allowed:
+      - 443
+      - 80
+
+  persona_isolation:
+    enabled: true
+    cross_persona_networking: false
+    cross_persona_filesystem_access: false
+
+  qubes:
+    allow_unrestricted_management: false
+    allow_dom0_access: false
+    allow_arbitrary_firewall_changes: false
+
+  resource_limits:
+    enabled: true
+    bandwidth_limit_required: true
+    request_limit_required: true
+
+  logging:
+    enabled: true
+    local_only: true
+    redact_sensitive_data: true
+
+  failure_behavior:
+    network_policy_unavailable: deny
+    dns_policy_unavailable: deny
+    whonix_unavailable: deny
+    safety_state_unavailable: deny
+    emergency_stop_active: deny
+
+# Example conceptual routing topology:
+#
+#   SPOT Persona Qube
+#          |
+#          v
+#   SPOT Network Boundary
+#          |
+#          v
+#      sys-whonix
+#          |
+#          v
+#         Tor
+#
+# Direct Persona -> Internet routing should not be silently enabled.
+#
+# Destination allowlists should be maintained by SPOT's network policy
+# layer rather than allowing arbitrary destinations through this file.
