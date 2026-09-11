@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    SPOT persistent persona template metadata.
+
+    This is a SPOT deployment template, not a replacement for the
+    Qubes template-management system.
+
+    Review and adapt this file to the Qubes OS release being used.
+-->
+
+<spot-template
+    id="spot-persona"
+    version="1">
+
+    <name>SPOT Persona</name>
+
+    <description>
+        Base environment for an isolated persistent SPOT synthetic persona.
+    </description>
+
+    <purpose>
+        synthetic-persona
+    </purpose>
+
+    <persistence>
+        persistent
+    </persistence>
+
+    <security>
+        <default-deny>true</default-deny>
+        <no-personal-data>true</no-personal-data>
+        <no-credentials>true</no-credentials>
+        <no-personal-browser-profile>true</no-personal-browser-profile>
+        <no-unrestricted-dom0>true</no-unrestricted-dom0>
+        <no-privileged-container>true</no-privileged-container>
+    </security>
+
+    <network>
+        <default-mode>whonix</default-mode>
+        <fail-closed>true</fail-closed>
+        <direct-fallback>false</direct-fallback>
+    </network>
+
+    <filesystem>
+        <persona-state>true</persona-state>
+        <personal-data>false</personal-data>
+        <credential-storage>false</credential-storage>
+    </filesystem>
+
+    <browser>
+        <isolated-profile>true</isolated-profile>
+        <personal-profile-import>false</personal-profile-import>
+        <credential-storage>false</credential-storage>
+    </browser>
+
+    <resources>
+        <max-processes>20</max-processes>
+        <max-browser-instances>3</max-browser-instances>
+        <max-sessions>10</max-sessions>
+    </resources>
+
+    <services>
+        <controller>org.spot.Controller</controller>
+        <persona>org.spot.Persona</persona>
+        <network>org.spot.Network</network>
+    </services>
+
+</spot-template>
