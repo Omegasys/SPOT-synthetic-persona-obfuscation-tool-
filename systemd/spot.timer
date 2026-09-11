@@ -1,0 +1,24 @@
+[Unit]
+Description=Scheduled SPOT activity timer
+Documentation=https://github.com/your-project/SPOT
+Requires=spot.service
+After=spot.service
+
+[Timer]
+# Run once shortly after boot.
+OnBootSec=5min
+
+# Run periodically after the initial activation.
+OnUnitActiveSec=30min
+
+# Spread activation slightly to avoid creating a rigid schedule.
+RandomizedDelaySec=5min
+
+# Do not start if the system is asleep and the timer would create
+# a large backlog of activity.
+Persistent=no
+
+Unit=spot.service
+
+[Install]
+WantedBy=timers.target
