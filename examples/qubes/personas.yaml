@@ -1,0 +1,206 @@
+# SPOT Qubes persona definitions.
+#
+# Each persona receives its own isolated Qube.
+# These are synthetic identities only.
+
+personas:
+
+  - id: "qubes-persona-01"
+
+    name: "Alex"
+
+    description: "Synthetic technology-focused persona."
+
+    synthetic_only: true
+    enabled: true
+    memory_enabled: true
+
+    qubes:
+      type: "persistent"
+      name: "spot-persona-01"
+      template: "spot-persona"
+
+      network:
+        mode: "whonix"
+        gateway: "sys-whonix"
+
+      isolated_storage: true
+      isolated_browser: true
+
+    identity:
+      age_range: "25-34"
+      location: "US"
+      language: "en"
+      attributes:
+        - "synthetic"
+
+    interests:
+      primary:
+        - "Linux"
+        - "open source"
+        - "programming"
+        - "hardware"
+        - "networking"
+
+      secondary:
+        - "privacy"
+        - "electronics"
+
+    behavior:
+      activity_level: 0.60
+      exploration: 0.75
+      consistency: 0.70
+      randomness: 0.40
+      research_depth: 0.75
+      session_length: 0.60
+      topic_switching: 0.35
+
+    limits:
+      max_session_seconds: 3600
+      max_activities: 10
+      max_browser_pages: 40
+
+
+  - id: "qubes-persona-02"
+
+    name: "Jordan"
+
+    description: "Synthetic outdoors-focused persona."
+
+    synthetic_only: true
+    enabled: true
+    memory_enabled: true
+
+    qubes:
+      type: "persistent"
+      name: "spot-persona-02"
+      template: "spot-persona"
+
+      network:
+        mode: "whonix"
+        gateway: "sys-whonix"
+
+      isolated_storage: true
+      isolated_browser: true
+
+    identity:
+      age_range: "30-39"
+      location: "US"
+      language: "en"
+      attributes:
+        - "synthetic"
+
+    interests:
+      primary:
+        - "hiking"
+        - "camping"
+        - "nature"
+        - "parks"
+        - "weather"
+
+      secondary:
+        - "fishing"
+        - "photography"
+        - "wildlife"
+        - "maps"
+
+    behavior:
+      activity_level: 0.40
+      exploration: 0.75
+      consistency: 0.60
+      randomness: 0.65
+      research_depth: 0.60
+      session_length: 0.45
+      topic_switching: 0.50
+
+    limits:
+      max_session_seconds: 2700
+      max_activities: 7
+      max_browser_pages: 30
+
+
+  - id: "qubes-persona-03"
+
+    name: "Riley"
+
+    description: "Synthetic creative-media persona."
+
+    synthetic_only: true
+    enabled: true
+    memory_enabled: true
+
+    qubes:
+      type: "disposable"
+      name: "spot-disposable-03"
+      template: "spot-disposable"
+
+      destroy_after_stop: true
+
+      network:
+        mode: "whonix"
+        gateway: "sys-whonix"
+
+      isolated_storage: true
+      isolated_browser: true
+
+    identity:
+      age_range: "20-29"
+      location: "US"
+      language: "en"
+      attributes:
+        - "synthetic"
+
+    interests:
+      primary:
+        - "digital art"
+        - "music"
+        - "film"
+        - "writing"
+        - "design"
+
+      secondary:
+        - "photography"
+        - "illustration"
+        - "animation"
+
+    behavior:
+      activity_level: 0.55
+      exploration: 0.85
+      consistency: 0.40
+      randomness: 0.75
+      research_depth: 0.50
+      session_length: 0.50
+      topic_switching: 0.70
+
+    limits:
+      max_session_seconds: 2700
+      max_activities: 8
+      max_browser_pages: 30
+
+
+defaults:
+
+  safety:
+    synthetic_only: true
+    fail_closed: true
+    emergency_stop: true
+
+    allow_credentials: false
+    allow_personal_data: false
+    allow_personal_browser_profiles: false
+
+    allow_dom0_access: false
+    allow_unrestricted_rpc: false
+
+  network:
+    mode: "whonix"
+    fail_closed: true
+    direct_fallback: false
+    dns_bypass: false
+
+  browser:
+    isolated: true
+    credentials: false
+    personal_profile_import: false
+    uploads: false
+    downloads: false
