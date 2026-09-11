@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    SPOT disposable persona template metadata.
+
+    This is a SPOT deployment template, not a replacement for the
+    Qubes disposable-VM implementation.
+
+    Review and adapt this file to the Qubes OS release being used.
+-->
+
+<spot-template
+    id="spot-disposable"
+    version="1">
+
+    <name>SPOT Disposable Persona</name>
+
+    <description>
+        Short-lived isolated environment for a synthetic SPOT persona.
+    </description>
+
+    <purpose>
+        disposable-synthetic-persona
+    </purpose>
+
+    <persistence>
+        none
+    </persistence>
+
+    <security>
+        <default-deny>true</default-deny>
+        <no-personal-data>true</no-personal-data>
+        <no-credentials>true</no-credentials>
+        <no-personal-browser-profile>true</no-personal-browser-profile>
+        <no-unrestricted-dom0>true</no-unrestricted-dom0>
+        <no-privileged-container>true</no-privileged-container>
+    </security>
+
+    <network>
+        <default-mode>whonix</default-mode>
+        <fail-closed>true</fail-closed>
+        <direct-fallback>false</direct-fallback>
+    </network>
+
+    <filesystem>
+        <persistent-persona-state>false</persistent-persona-state>
+        <personal-data>false</personal-data>
+        <credential-storage>false</credential-storage>
+    </filesystem>
+
+    <browser>
+        <isolated-profile>true</isolated-profile>
+        <personal-profile-import>false</personal-profile-import>
+        <credential-storage>false</credential-storage>
+        <cleanup-on-exit>true</cleanup-on-exit>
+    </browser>
+
+    <lifecycle>
+        <persistent>false</persistent>
+        <destroy-after-stop>true</destroy-after-stop>
+    </lifecycle>
+
+    <resources>
+        <max-processes>20</max-processes>
+        <max-browser-instances>2</max-browser-instances>
+        <max-sessions>3</max-sessions>
+    </resources>
+
+    <services>
+        <controller>org.spot.Controller</controller>
+        <persona>org.spot.Persona</persona>
+        <network>org.spot.Network</network>
+    </services>
+
+</spot-template>
