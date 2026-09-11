@@ -1,0 +1,56 @@
+# SPOT basic example configuration.
+# This example is intentionally conservative.
+
+spot:
+  name: "basic-example"
+  version: 1
+
+  enabled: true
+  autostart: false
+
+  safe_mode: true
+  emergency_stop: true
+
+  max_concurrent_personas: 1
+
+  personas:
+    directory: "./examples/basic"
+    files:
+      - "persona.yaml"
+
+  storage:
+    directory: "./data/basic"
+    encrypted: true
+    minimize_sensitive_data: true
+
+  browser:
+    enabled: true
+    isolated_profiles: true
+    import_personal_profile: false
+    allow_credentials: false
+    allow_uploads: false
+    allow_downloads: false
+    cleanup_on_stop: true
+
+  network:
+    mode: "whonix"
+    fail_closed: true
+    allow_fallback: false
+    prevent_dns_bypass: true
+    kill_switch: true
+
+  scheduling:
+    enabled: false
+
+  plugins:
+    enabled: false
+
+  analytics:
+    enabled: true
+    local_only: true
+    remote_reporting: false
+
+  logging:
+    level: "INFO"
+    local_only: true
+    redact_sensitive_data: true
