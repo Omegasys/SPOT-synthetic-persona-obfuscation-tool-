@@ -1,0 +1,37 @@
+#!/bin/sh
+
+# SPOT Controller Qubes RPC endpoint.
+#
+# This service intentionally accepts only a small, explicit command set.
+# It must not become a general-purpose command execution interface.
+
+set -eu
+
+REQUEST="$(cat)"
+
+case "$REQUEST" in
+    status)
+        exec /usr/bin/python3 -m spot status
+        ;;
+
+    emergency-stop)
+        exec /usr/bin/python3 -m spot emergency-stop
+        ;;
+
+    reset-emergency-stop)
+        exec /usr/bin/python3 -m spot reset-emergency-stop
+        ;;
+
+    start)
+        exec /usr/bin/python3 -m spot start
+        ;;
+
+    stop)
+        exec /usr/bin/python3 -m spot stop
+        ;;
+
+    *)
+        echo "Denied: unknown SPOT controller operation." >&2
+        exit 1
+        ;;
+esac
