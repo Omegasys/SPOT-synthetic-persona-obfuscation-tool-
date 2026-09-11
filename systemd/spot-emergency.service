@@ -1,0 +1,40 @@
+[Unit]
+Description=SPOT Emergency Stop
+Documentation=https://github.com/your-project/SPOT
+
+# Emergency stop must be able to stop normal SPOT operation.
+Before=spot.service
+Conflicts=spot.service
+
+[Service]
+Type=oneshot
+
+# Use the same dedicated account as the normal service.
+User=spot
+Group=spot
+
+# Activate SPOT's application-level emergency stop.
+ExecStart=/usr/bin/python3 -m spot emergency-stop
+
+# Emergency-stop state must survive normal service shutdown.
+RemainAfterExit=yes
+
+# Do not grant broad system privileges.
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateDevices=yes
+
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectKernelLogs=yes
+ProtectControlGroups=yes
+ProtectClock=yes
+ProtectHostname=yes
+
+CapabilityBoundingSet=
+AmbientCapabilities=
+
+[Install]
+WantedBy=multi-user.target
