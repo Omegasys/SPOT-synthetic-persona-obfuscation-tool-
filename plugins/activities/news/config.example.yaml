@@ -1,0 +1,72 @@
+# SPOT News Activity Plugin
+
+enabled: false
+
+synthetic_only: true
+
+limits:
+  max_articles: 5
+  max_sources: 3
+  max_topics_per_session: 5
+  max_requests_per_minute: 5
+
+topics:
+  # Broad synthetic topic categories.
+  allowed:
+    - technology
+    - science
+    - environment
+    - transportation
+    - space
+    - business
+    - arts
+    - culture
+    - sports
+    - general
+
+  # Provider-specific topic restrictions can be added here.
+  blocked: []
+
+sources:
+  use_spot_allowlist: true
+  use_spot_blocklist: true
+  max_sources_per_request: 3
+
+network:
+  use_spot_network_policy: true
+  require_approved_network: true
+  fail_closed: true
+  direct_fallback: false
+  prevent_dns_bypass: true
+
+privacy:
+  personal_data_access: false
+  credential_access: false
+  import_personal_history: false
+  import_personal_browser_profile: false
+
+storage:
+  store_full_articles: false
+  store_article_content: false
+  store_page_source: false
+
+automation:
+  unrestricted_crawling: false
+  recursive_crawling: false
+  bulk_requests: false
+
+logging:
+  enabled: true
+  log_topic: false
+  log_article_titles: false
+  log_urls: false
+  log_persona_id: true
+  redact_sensitive_values: true
+
+safety:
+  respect_emergency_stop: true
+  respect_activity_limits: true
+  respect_rate_limits: true
+  respect_bandwidth_limits: true
+  respect_domain_allowlist: true
+  respect_domain_blocklist: true
