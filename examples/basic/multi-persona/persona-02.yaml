@@ -1,0 +1,99 @@
+id: "persona-02"
+
+name: "Jordan"
+
+description: "A synthetic outdoors and nature enthusiast."
+
+synthetic_only: true
+enabled: true
+memory_enabled: true
+
+identity:
+  age_range: "30-39"
+  location: "US"
+  language: "en"
+  attributes:
+    - "synthetic"
+
+interests:
+  primary:
+    - "hiking"
+    - "camping"
+    - "nature"
+    - "parks"
+    - "weather"
+
+  secondary:
+    - "fishing"
+    - "photography"
+    - "wildlife"
+    - "maps"
+
+preferences:
+  content_types:
+    - "articles"
+    - "maps"
+    - "weather"
+    - "videos"
+    - "photography"
+
+  topics:
+    - "hiking"
+    - "camping"
+    - "parks"
+    - "weather"
+    - "wildlife"
+
+  languages:
+    - "en"
+
+behavior:
+  activity_level: 0.40
+  exploration: 0.75
+  consistency: 0.60
+  randomness: 0.65
+  research_depth: 0.60
+  session_length: 0.45
+  topic_switching: 0.50
+
+  preferred_actions:
+    - "search"
+    - "research"
+    - "browsing"
+
+routines:
+  - name: "weekday-evening"
+    days:
+      - "monday"
+      - "tuesday"
+      - "wednesday"
+      - "thursday"
+      - "friday"
+    start_hour: 18
+    start_minute: 0
+    end_hour: 21
+    end_minute: 0
+
+  - name: "weekend-morning"
+    days:
+      - "saturday"
+      - "sunday"
+    start_hour: 8
+    start_minute: 0
+    end_hour: 12
+    end_minute: 0
+
+limits:
+  max_session_seconds: 2700
+  max_activities: 7
+  max_browser_pages: 30
+
+network:
+  mode: "inherit"
+  fail_closed: true
+
+browser:
+  isolated: true
+  persistent: true
+  allow_credentials: false
+  allow_personal_profile_import: false
