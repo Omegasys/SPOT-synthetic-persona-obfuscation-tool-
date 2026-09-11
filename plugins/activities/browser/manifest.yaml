@@ -1,0 +1,58 @@
+id: activity-browser
+name: Browser Activity Plugin
+version: 0.1.0
+
+category: activities
+subcategory: browser
+
+entrypoint: plugin.py
+
+description: >
+  Provides bounded, isolated, provider-neutral synthetic browser activity.
+
+enabled_by_default: false
+
+capabilities:
+  - activity.browser
+
+permissions:
+  network: false
+  filesystem: false
+  process: false
+  browser: true
+  credentials: false
+  personal_data: false
+  qubes_rpc: false
+  privileged: false
+
+security:
+  synthetic_only: true
+  isolated_profile_required: true
+  personal_profile_import: false
+  credential_access: false
+  personal_data_access: false
+  unrestricted_network: false
+  unrestricted_filesystem: false
+  authentication_bypass: false
+  captcha_bypass: false
+  security_control_bypass: false
+  file_uploads: false
+  bulk_requests: false
+
+limits:
+  max_pages: 10
+  max_actions: 25
+
+network:
+  use_spot_network_policy: true
+  require_approved_network: true
+  fail_closed: true
+  direct_fallback: false
+
+browser:
+  isolated_profile: true
+  persistent_profile: true
+  import_personal_profile: false
+  use_credentials: false
+  allow_downloads: false
+  allow_uploads: false
