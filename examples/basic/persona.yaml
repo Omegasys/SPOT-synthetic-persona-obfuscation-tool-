@@ -1,0 +1,84 @@
+id: "basic-user"
+
+name: "Morgan"
+
+description: "A simple synthetic everyday internet user."
+
+synthetic_only: true
+enabled: true
+memory_enabled: true
+
+identity:
+  age_range: "25-34"
+  location: "US"
+  language: "en"
+  attributes:
+    - "synthetic"
+
+interests:
+  primary:
+    - "technology"
+    - "movies"
+    - "music"
+
+  secondary:
+    - "food"
+    - "travel"
+    - "hobbies"
+
+preferences:
+  content_types:
+    - "articles"
+    - "videos"
+    - "music"
+
+  topics:
+    - "technology"
+    - "entertainment"
+    - "food"
+
+  languages:
+    - "en"
+
+behavior:
+  activity_level: 0.45
+  exploration: 0.55
+  consistency: 0.60
+  randomness: 0.45
+  research_depth: 0.40
+  session_length: 0.40
+  topic_switching: 0.45
+
+  preferred_actions:
+    - "search"
+    - "browsing"
+    - "news"
+    - "media"
+
+routines:
+  - name: "weekday-evening"
+    days:
+      - "monday"
+      - "tuesday"
+      - "wednesday"
+      - "thursday"
+      - "friday"
+    start_hour: 18
+    start_minute: 0
+    end_hour: 22
+    end_minute: 0
+
+limits:
+  max_session_seconds: 1800
+  max_activities: 8
+  max_browser_pages: 25
+
+network:
+  mode: "inherit"
+  fail_closed: true
+
+browser:
+  isolated: true
+  persistent: true
+  allow_credentials: false
+  allow_personal_profile_import: false
