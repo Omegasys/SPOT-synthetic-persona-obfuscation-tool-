@@ -1,0 +1,101 @@
+id: "persona-01"
+
+name: "Alex"
+
+description: "A synthetic technology enthusiast."
+
+synthetic_only: true
+enabled: true
+memory_enabled: true
+
+identity:
+  age_range: "25-34"
+  location: "US"
+  language: "en"
+  attributes:
+    - "synthetic"
+
+interests:
+  primary:
+    - "Linux"
+    - "open source"
+    - "hardware"
+    - "programming"
+    - "networking"
+
+  secondary:
+    - "privacy"
+    - "electronics"
+    - "self-hosting"
+
+preferences:
+  content_types:
+    - "articles"
+    - "documentation"
+    - "videos"
+    - "news"
+
+  topics:
+    - "Linux"
+    - "open source"
+    - "privacy"
+    - "programming"
+    - "hardware"
+
+  languages:
+    - "en"
+
+behavior:
+  activity_level: 0.60
+  exploration: 0.75
+  consistency: 0.70
+  randomness: 0.40
+  research_depth: 0.75
+  session_length: 0.60
+  topic_switching: 0.35
+
+  preferred_actions:
+    - "search"
+    - "browsing"
+    - "research"
+    - "news"
+
+routines:
+  - name: "morning"
+    days:
+      - "monday"
+      - "tuesday"
+      - "wednesday"
+      - "thursday"
+      - "friday"
+    start_hour: 7
+    start_minute: 0
+    end_hour: 9
+    end_minute: 0
+
+  - name: "evening"
+    days:
+      - "monday"
+      - "tuesday"
+      - "wednesday"
+      - "thursday"
+      - "friday"
+    start_hour: 18
+    start_minute: 0
+    end_hour: 22
+    end_minute: 0
+
+limits:
+  max_session_seconds: 3600
+  max_activities: 10
+  max_browser_pages: 40
+
+network:
+  mode: "inherit"
+  fail_closed: true
+
+browser:
+  isolated: true
+  persistent: true
+  allow_credentials: false
+  allow_personal_profile_import: false
