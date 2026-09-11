@@ -1,0 +1,67 @@
+[Unit]
+Description=SPOT Synthetic Persona Obfuscation Tool
+Documentation=https://github.com/your-project/SPOT
+After=network-online.target
+Wants=network-online.target
+
+# SPOT should not start if the emergency-stop unit is active.
+Conflicts=spot-emergency.service
+
+[Service]
+Type=simple
+
+# Replace with the dedicated system user created during installation.
+User=spot
+Group=spot
+
+ExecStart=/usr/bin/python3 -m spot
+ExecStop=/usr/bin/python3 -m spot stop
+
+Restart=on-failure
+RestartSec=10
+
+# Do not allow systemd to pass arbitrary user environment into SPOT.
+Environment=PYTHONUNBUFFERED=1
+
+# Restrict the service's filesystem view.
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=yes
+
+# SPOT should not directly manipulate devices.
+PrivateDevices=yes
+
+# Prevent kernel/module and low-level system manipulation.
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectKernelLogs=yes
+ProtectControlGroups=yes
+
+# Restrict access to sensitive system information.
+ProtectClock=yes
+ProtectHostname=yes
+LockPersonality=yes
+RestrictSUIDSGID=yes
+
+# SPOT does not need to create new namespaces itself.
+RestrictNamespaces=yes
+
+# Reduce available system calls where practical.
+SystemCallArchitectures=native
+
+# Prevent accidental privilege escalation.
+CapabilityBoundingSet=
+AmbientCapabilities=
+
+# Allow SPOT's own state/configuration directories.
+ReadWritePaths=/var/lib/spot
+ReadWritePaths=/var/log/spot
+ReadWritePaths=/run/spot
+
+# Give systemd a bounded shutdown period.
+TimeoutStartSec=60
+TimeoutStopSec=30
+
+[Install]
+WantedBy=multi-user.target
