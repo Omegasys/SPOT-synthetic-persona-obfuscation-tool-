@@ -1,0 +1,65 @@
+id: network-proxy
+name: Proxy Networking Plugin
+version: 0.1.0
+
+category: networking
+subcategory: proxy
+
+entrypoint: plugin.py
+
+description: >
+  Provides controlled HTTP, HTTPS, SOCKS5, and SOCKS5H
+  proxy integration for SPOT.
+
+enabled_by_default: false
+
+capabilities:
+  - network.proxy
+  - network.health_check
+  - network.fail_closed
+
+permissions:
+  network: true
+  filesystem: false
+  process: false
+  browser: false
+  credentials: false
+  personal_data: false
+  qubes_rpc: false
+  privileged: false
+
+security:
+  fail_closed: true
+  direct_fallback: false
+  unrestricted_network: false
+  raw_socket_access: false
+  firewall_modification: false
+  routing_table_modification: false
+  proxy_chaining: false
+  credential_access: false
+  personal_data_access: false
+  dns_bypass: false
+
+proxy:
+  supported_types:
+    - http
+    - https
+    - socks5
+    - socks5h
+
+  default_type: socks5
+  default_host: 127.0.0.1
+  default_port: 8080
+
+  authentication:
+    enabled_by_default: false
+    credential_storage: false
+
+network:
+  use_spot_network_policy: true
+  require_approved_network: true
+  prevent_direct_fallback: true
+  prevent_dns_bypass: true
+
+limits:
+  connect_timeout_seconds: 5
