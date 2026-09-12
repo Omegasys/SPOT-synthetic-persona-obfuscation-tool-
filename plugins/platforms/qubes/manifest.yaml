@@ -1,0 +1,82 @@
+id: platform-qubes
+name: Qubes Platform Plugin
+version: 0.1.0
+
+category: platforms
+subcategory: qubes
+
+entrypoint: plugin.py
+
+description: >
+  Provides controlled Qubes OS integration for SPOT.
+
+enabled_by_default: false
+
+capabilities:
+  - platform.qubes
+  - platform.qubes.personas
+  - platform.qubes.disposables
+  - platform.qubes.rpc
+  - platform.qubes.networking
+
+permissions:
+  network: true
+  filesystem: false
+  process: false
+  browser: false
+  credentials: false
+  personal_data: false
+  qubes_rpc: true
+  privileged: false
+
+security:
+  default_deny: true
+  fail_closed: true
+  direct_network: false
+  unrestricted_dom0: false
+  arbitrary_commands: false
+  shell_access: false
+  unrestricted_rpc: false
+  credential_access: false
+  personal_data_access: false
+  device_access: false
+
+qubes:
+  require_qubes: false
+
+  allow_dom0: false
+  allow_arbitrary_commands: false
+  allow_shell: false
+
+  persistent_qubes: true
+  disposable_qubes: true
+
+network:
+  require_whonix: true
+  allow_direct: false
+  fail_closed: true
+  prevent_dns_bypass: true
+
+rpc:
+  default_policy: deny
+
+  allowed_services:
+    - spot-controller
+    - spot-persona
+    - spot-network
+
+  denied_services:
+    - admin.vm.Create
+    - admin.vm.Remove
+    - admin.vm.Start
+    - admin.vm.Shutdown
+    - admin.vm.property.Set
+    - admin.vm.device.Attach
+    - admin.vm.device.Detach
+    - admin.vm.volume.Import
+    - admin.vm.volume.ImportWithSize
+
+safety:
+  respect_emergency_stop: true
+  respect_persona_limits: true
+  respect_network_limits: true
