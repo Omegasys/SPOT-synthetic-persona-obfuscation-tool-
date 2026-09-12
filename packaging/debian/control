@@ -1,0 +1,40 @@
+Source: spot
+Section: utils
+Priority: optional
+Maintainer: SPOT Project <maintainers@example.invalid>
+Build-Depends:
+ debhelper-compat (= 13),
+ dh-python,
+ python3-all,
+ python3-setuptools
+Standards-Version: 4.7.0
+Rules-Requires-Root: no
+Homepage: https://github.com/example/SPOT
+Vcs-Browser: https://github.com/example/SPOT
+Vcs-Git: https://github.com/example/SPOT.git
+
+Package: spot
+Architecture: all
+Depends:
+ ${misc:Depends},
+ ${python3:Depends},
+ python3
+Recommends:
+ systemd
+Suggests:
+ tor,
+ whonix
+Description: Synthetic Persona Obfuscation Tool
+ SPOT (Synthetic Persona Obfuscation Tool) is a privacy research
+ application for creating isolated synthetic personas and controlled
+ synthetic activity.
+ .
+ SPOT provides persona management, activity scheduling, browser
+ isolation, network policy, safety controls, local analytics,
+ auditing, and platform integration.
+ .
+ SPOT is designed to keep synthetic activity isolated from real
+ credentials, personal data, and personal browser profiles.
+ .
+ Network privacy features such as Tor and Whonix are integrations and
+ are not assumed to provide anonymity merely by installing SPOT.
