@@ -1,0 +1,127 @@
+# SPOT Qubes Platform Plugin
+
+enabled: false
+
+qubes:
+  # This plugin may be configured on a non-Qubes development system,
+  # but Qubes-specific operations require Qubes.
+  require_qubes: false
+
+  # Never grant unrestricted dom0 access.
+  allow_dom0: false
+
+  # Never execute arbitrary commands through Qubes RPC.
+  allow_arbitrary_commands: false
+
+  # Never expose a shell through the plugin.
+  allow_shell: false
+
+  persistent_qubes: true
+  disposable_qubes: true
+
+network:
+  # SPOT personas should use Whonix when networking is enabled.
+  require_whonix: true
+
+  # Direct networking is disabled.
+  allow_direct: false
+
+  # Stop/deny activity when the required network path is unavailable.
+  fail_closed: true
+
+  # DNS must remain inside the selected network boundary.
+  prevent_dns_bypass: true
+
+rpc:
+  # Qubes RPC uses a default-deny policy.
+  default_policy: deny
+
+  # These names refer to the narrow SPOT service interfaces.
+  allowed_services:
+    - spot-controller
+    - spot-persona
+    - spot-network
+
+  # Explicitly prohibited operations.
+  denied_services:
+    - admin.vm.Create
+    - admin.vm.Remove
+    - admin.vm.Start
+    - admin.vm.Shutdown
+    - admin.vm.property.Set
+    - admin.vm.device.Attach
+    - admin.vm.device.Detach
+    - admin.vm.volume.Import
+    - admin.vm.volume.ImportWithSize
+
+personas:
+  # Example assignments.
+  #
+  # Keep persona state isolated from personal data.
+  assignments:
+
+    - persona_id: alex
+      qube_name: spot-persona-01
+      type: appvm
+
+      network:
+        mode: whonix
+        qube: sys-whonix
+
+      enabled: true
+
+      destroy_after_stop: false
+
+    - persona_id: jordan
+      qube_name: spot-persona-02
+      type: appvm
+
+      network:
+        mode: whonix
+        qube: sys-whonix
+
+      enabled: true
+
+      destroy_after_stop: false
+
+    - persona_id: riley
+      qube_name: spot-disposable-03
+      type: disposable
+
+      network:
+        mode: whonix
+        qube: sys-whonix
+
+      enabled: true
+
+      # Disposable Qubes are not used for persistent storage.
+      destroy_after_stop: true
+
+storage:
+  # Keep SPOT state separate from personal Qube data.
+  isolated: true
+
+  # Sensitive SPOT state should use the main storage encryption layer.
+  encrypted: true
+
+  import_personal_data: false
+  import_browser_profiles: false
+  import_credentials: false
+
+safety:
+  emergency_stop: true
+
+  # Do not automatically resume after emergency stop.
+  resume_after_emergency_stop: false
+
+  respect_activity_limits: true
+  respect_resource_limits: true
+  respect_bandwidth_limits: true
+
+logging:
+  enabled: true
+
+  # Do not log arbitrary RPC payloads.
+  log_rpc_payloads: false
+
+  redact_sensitive_values: true
