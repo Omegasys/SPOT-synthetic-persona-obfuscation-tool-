@@ -1,0 +1,30 @@
+#!/bin/sh
+
+set -eu
+
+APPDIR="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
+
+export SPOT_APPIMAGE=1
+export SPOT_APPDIR="$APPDIR"
+
+# Keep application-local Python modules available.
+if [ -d "$APPDIR/usr/lib/python3/dist-packages" ]; then
+    export PYTHONPATH="$APPDIR/usr/lib/python3/dist-packages${PYTHONPATH:+:$PYTHONPATH}"
+fi
+
+if [ -d "$APPDIR/usr/lib/python3/site-packages" ]; then
+    export PYTHONPATH="$APPDIR/usr/lib/python3/site-packages${PYTHONPATH:+:$PYTHONPATH}"
+fi
+
+if [ -d "$APPDIR/usr/lib" ]; then
+    export LD_LIBRARY_PATH="$APPDIR/usr/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+fi
+
+# Never run the application as root merely because the AppImage
+# itself was launched by root.
+if [ "$(id -u)" -eq 0 ]; then
+    echo "SPOT AppImage must not be run as root." >&2
+    exit 1
+fi
+
+exec python3 -m spot "$@"
