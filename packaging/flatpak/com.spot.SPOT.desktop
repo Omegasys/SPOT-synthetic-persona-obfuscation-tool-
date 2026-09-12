@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=SPOT
+GenericName=Synthetic Persona Obfuscation Tool
+Comment=Privacy research and synthetic persona isolation
+Exec=spot-flatpak
+Icon=com.spot.SPOT
+Terminal=true
+Type=Application
+Categories=Utility;Security;System;
+Keywords=privacy;security;persona;isolation;Tor;Whonix;
+StartupNotify=true
