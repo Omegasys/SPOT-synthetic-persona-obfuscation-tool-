@@ -1,0 +1,29 @@
+#!/bin/sh
+#
+# SPOT Qubes RPC service: spot-network
+#
+# This service exposes only network status/health operations and
+# emergency stop. It does not modify arbitrary Qubes networking.
+
+set -eu
+
+COMMAND="${1:-}"
+
+case "$COMMAND" in
+    status)
+        exec /usr/bin/python3 -m spot network status
+        ;;
+
+    health)
+        exec /usr/bin/python3 -m spot network health
+        ;;
+
+    emergency-stop)
+        exec /usr/bin/python3 -m spot network emergency-stop
+        ;;
+
+    *)
+        echo "Denied: unsupported SPOT network operation." >&2
+        exit 1
+        ;;
+esac
