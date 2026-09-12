@@ -1,0 +1,27 @@
+#!/usr/bin/make -f
+
+export PYBUILD_NAME=spot
+
+%:
+	dh $@ --with python3 --buildsystem=pybuild
+
+override_dh_auto_configure:
+	dh_auto_configure
+
+override_dh_auto_build:
+	dh_auto_build
+
+override_dh_auto_install:
+	dh_auto_install
+
+override_dh_install:
+	dh_install
+	install -D -m 0644 packaging/debian/spot.service \
+		debian/spot/lib/systemd/system/spot.service
+	install -D -m 0644 packaging/debian/spot.tmpfiles \
+		debian/spot/usr/lib/tmpfiles.d/spot.conf
+
+override_dh_auto_test:
+	# Tests are intentionally not run here until the Debian build
+	# environment has all optional SPOT test dependencies.
+	:
