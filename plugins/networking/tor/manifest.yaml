@@ -1,0 +1,51 @@
+id: network-tor
+name: Tor Networking Plugin
+version: 0.1.0
+
+category: networking
+subcategory: tor
+
+entrypoint: plugin.py
+
+description: >
+  Provides controlled Tor SOCKS routing integration for SPOT.
+
+enabled_by_default: false
+
+capabilities:
+  - network.tor
+
+permissions:
+  network: true
+  filesystem: false
+  process: false
+  browser: false
+  credentials: false
+  personal_data: false
+  qubes_rpc: false
+  privileged: false
+
+security:
+  fail_closed: true
+  direct_fallback: false
+  unrestricted_network: false
+  raw_socket_access: false
+  firewall_modification: false
+  routing_table_modification: false
+  credential_access: false
+  personal_data_access: false
+
+tor:
+  protocol: socks5
+  default_host: 127.0.0.1
+  default_port: 9050
+  strict: true
+
+network:
+  use_spot_network_policy: true
+  require_approved_network: true
+  prevent_direct_fallback: true
+  prevent_dns_bypass: true
+
+limits:
+  connect_timeout_seconds: 5
