@@ -1,0 +1,10 @@
+spot (0.1.0-1) unstable; urgency=medium
+
+  * Initial Debian packaging for SPOT.
+  * Add systemd service integration.
+  * Add tmpfiles configuration.
+  * Add dedicated SPOT package directories.
+  * Apply restrictive service sandboxing.
+  * Preserve fail-closed privacy and isolation defaults.
+
+ -- SPOT Project <maintainers@example.invalid>  Fri, 11 Sep 2026 00:00:00 +0000
