@@ -1,0 +1,90 @@
+# SPOT Whonix Networking Plugin
+
+enabled: false
+
+whonix:
+  # Supported values:
+  #   generic
+  #   qubes
+  topology: qubes
+
+  # In a Qubes/Whonix deployment this normally refers to the
+  # Whonix Gateway providing the Tor network path.
+  gateway_host: sys-whonix
+  gateway_port: 9050
+
+  # Expected Whonix Workstation.
+  workstation_name: anon-whonix
+
+  # Require the Whonix Gateway before network activity is allowed.
+  require_gateway: true
+
+  # Require Tor as part of the Whonix path.
+  require_tor: true
+
+  # Strict routing prevents the integration from treating the
+  # Whonix path as optional.
+  strict: true
+
+  # Stop/deny activity when the required path is unavailable.
+  fail_closed: true
+
+  # Keep this false.
+  allow_direct_fallback: false
+
+network:
+  # Use SPOT's network policy as the authoritative policy layer.
+  use_spot_network_policy: true
+
+  # Network destinations must pass SPOT's destination policy.
+  require_approved_network: true
+
+  # Never silently switch to direct networking.
+  prevent_direct_fallback: true
+
+  # DNS must remain inside the selected network boundary.
+  prevent_dns_bypass: true
+
+  # The plugin does not directly modify host routing.
+  modify_host_routes: false
+
+  # The plugin does not directly modify host firewalls.
+  modify_firewall: false
+
+health:
+  enabled: true
+
+  # A TCP check only verifies that the configured Gateway endpoint
+  # is reachable. It does not perform an Internet request.
+  tcp_endpoint_check: true
+
+  check_on_start: false
+
+  interval_seconds: 60
+  timeout_seconds: 5
+
+logging:
+  enabled: true
+
+  # Avoid logging complete destinations unnecessarily.
+  log_destinations: false
+
+  # Do not log credentials or personal data.
+  redact_sensitive_values: true
+
+safety:
+  respect_emergency_stop: true
+  respect_network_limits: true
+  respect_bandwidth_limits: true
+  respect_domain_allowlist: true
+  respect_domain_blocklist: true
+
+qubes:
+  # Qubes operations are delegated to the Qubes integration layer.
+  manage_qubes_directly: false
+
+  # Never grant unrestricted dom0 access.
+  allow_dom0_access: false
+
+  # Use explicit Qubes RPC policies.
+  require_explicit_rpc_policy: true
