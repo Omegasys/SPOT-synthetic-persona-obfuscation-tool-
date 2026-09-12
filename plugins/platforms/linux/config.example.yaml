@@ -1,0 +1,77 @@
+# SPOT Linux Platform Plugin
+#
+# Copy this file to your local configuration directory
+# and adjust it after reviewing the security model.
+
+enabled: false
+
+# Fail closed if a required platform condition is unavailable.
+fail_closed: true
+
+# Platform requirements.
+require_linux: true
+require_systemd: false
+
+# Linux sandbox mechanism.
+#
+# Options:
+#   none
+#   systemd
+#   bubblewrap
+#   apparmor
+#   selinux
+#   namespace
+sandbox: systemd
+
+require_sandbox: false
+
+# Direct networking is disabled by default.
+#
+# Network routing should normally be handled by the SPOT
+# network subsystem and, where appropriate, Tor or Whonix.
+allow_direct_network: false
+
+# Prevent applications from bypassing the SPOT network policy.
+prevent_dns_bypass: true
+
+# These capabilities are intentionally unsupported.
+allow_root_operations: false
+allow_shell: false
+allow_arbitrary_commands: false
+
+# Dedicated SPOT directories.
+config_directory: /etc/spot
+state_directory: /var/lib/spot
+runtime_directory: /run/spot
+log_directory: /var/log/spot
+
+# Paths SPOT may use.
+#
+# These are policy paths, not an automatic grant of unrestricted
+# filesystem access.
+allowed_paths:
+  - /etc/spot
+  - /var/lib/spot
+  - /run/spot
+  - /var/log/spot
+
+# Paths that must remain unavailable to the plugin.
+denied_paths:
+  - /root
+  - /home
+  - /etc/shadow
+  - /etc/gshadow
+  - /etc/passwd
+  - /etc/sudoers
+  - /etc/ssh
+  - /var/lib/private
+
+# Recommended security behavior:
+#
+# - Do not import a personal browser profile.
+# - Do not import personal files.
+# - Do not provide credentials to personas.
+# - Do not grant root access.
+# - Do not enable arbitrary commands.
+# - Use Whonix/Tor when privacy routing is required.
+# - Keep emergency stop enabled.
