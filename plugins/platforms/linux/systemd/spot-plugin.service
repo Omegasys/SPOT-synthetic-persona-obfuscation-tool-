@@ -1,0 +1,65 @@
+[Unit]
+Description=SPOT Linux Platform Plugin
+Documentation=https://github.com/example/SPOT
+After=network-online.target
+Wants=network-online.target
+ConditionPathExists=/etc/spot
+
+[Service]
+Type=simple
+
+User=spot
+Group=spot
+
+ExecStart=/usr/bin/python3 -m spot
+ExecStop=/usr/bin/python3 -m spot stop
+
+Restart=on-failure
+RestartSec=10s
+
+# Do not grant SPOT unnecessary privileges.
+NoNewPrivileges=true
+PrivateTmp=true
+PrivateDevices=true
+
+ProtectSystem=strict
+ProtectHome=true
+
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectKernelLogs=true
+ProtectControlGroups=true
+
+LockPersonality=true
+RestrictRealtime=true
+RestrictSUIDSGID=true
+
+# Do not expose host hardware devices.
+DevicePolicy=closed
+
+# Restrict system calls where supported.
+SystemCallArchitectures=native
+
+# SPOT's expected writable locations.
+ReadWritePaths=/var/lib/spot
+ReadWritePaths=/var/log/spot
+ReadWritePaths=/run/spot
+
+# Prevent accidental privilege escalation through capabilities.
+CapabilityBoundingSet=
+AmbientCapabilities=
+
+# Do not automatically acquire network administration privileges.
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+
+# Resource boundaries.
+TasksMax=128
+MemoryMax=2G
+CPUQuota=80%
+
+# Keep service output local.
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
