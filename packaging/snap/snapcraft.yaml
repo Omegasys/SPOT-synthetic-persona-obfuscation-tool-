@@ -1,0 +1,81 @@
+name: spot-privacy
+base: core24
+
+version: '0.1.0'
+
+summary: Synthetic Persona Obfuscation Tool
+description: |
+  SPOT (Synthetic Persona Obfuscation Tool) is an open-source
+  privacy research application for creating isolated synthetic
+  personas and controlled synthetic activity.
+
+  SPOT is designed around isolation, least privilege, explicit
+  network boundaries, local control, and safe failure.
+
+  SPOT does not provide guaranteed anonymity or unlinkability.
+  It does not impersonate real people, send unsolicited bulk
+  messages, bypass authentication or security controls, or
+  perform denial-of-service activity.
+
+grade: devel
+confinement: strict
+
+license: GPL-3.0-or-later
+
+website: https://github.com/example/SPOT
+source-code: https://github.com/example/SPOT
+issues: https://github.com/example/SPOT/issues
+
+architectures:
+  - build-on: amd64
+  - build-on: arm64
+  - build-on: armhf
+  - build-on: riscv64
+
+environment:
+  PYTHONUNBUFFERED: '1'
+  PYTHONDONTWRITEBYTECODE: '1'
+
+apps:
+
+  spot:
+    command: bin/spot
+    plugs:
+      - network
+      - network-bind
+      - home
+      - removable-media
+    environment:
+      SPOT_CONFIG_DIR: $SNAP_USER_DATA/config
+      SPOT_DATA_DIR: $SNAP_USER_DATA/data
+      SPOT_STATE_DIR: $SNAP_USER_DATA/state
+      SPOT_LOG_DIR: $SNAP_USER_DATA/logs
+      SPOT_PLUGIN_DIR: $SNAP_USER_DATA/plugins
+
+parts:
+
+  spot:
+    plugin: python
+
+    source: .
+
+    python-packages:
+      - .
+
+    build-packages:
+      - python3-dev
+      - python3-pip
+      - python3-setuptools
+      - python3-wheel
+
+    stage-packages:
+      - ca-certificates
+
+    organize:
+      src/spot: lib/python3/site-packages/spot
+
+  spot-wrapper:
+    plugin: dump
+    source: snap/local
+    organize:
+      bin/spot: bin/spot
