@@ -1,0 +1,60 @@
+# SPOT Tor Networking Plugin
+
+enabled: false
+
+tor:
+  host: 127.0.0.1
+  port: 9050
+
+  socks_version: 5
+
+  # Strict mode requires Tor to be available before network
+  # activity is allowed.
+  strict: true
+
+  fail_closed: true
+
+  # Keep this false when fail_closed is true.
+  allow_direct_fallback: false
+
+  connect_timeout_seconds: 5
+
+network:
+  use_spot_network_policy: true
+  require_approved_network: true
+
+  # Never silently bypass Tor.
+  prevent_direct_fallback: true
+
+  # DNS remains controlled by SPOT's network layer.
+  prevent_dns_bypass: true
+
+  # The plugin does not modify host routing.
+  modify_host_routes: false
+  modify_firewall: false
+
+security:
+  unrestricted_network: false
+  raw_socket_access: false
+  filesystem_access: false
+  credential_access: false
+  personal_data_access: false
+
+health:
+  enabled: true
+  check_on_start: false
+  interval_seconds: 60
+  timeout_seconds: 5
+
+logging:
+  enabled: true
+  log_destination: false
+  log_full_proxy_url: false
+  redact_sensitive_values: true
+
+safety:
+  respect_emergency_stop: true
+  respect_network_limits: true
+  respect_bandwidth_limits: true
+  respect_domain_allowlist: true
+  respect_domain_blocklist: true
