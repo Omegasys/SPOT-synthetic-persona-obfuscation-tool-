@@ -1,0 +1,39 @@
+#!/bin/sh
+#
+# SPOT Qubes RPC service: spot-persona
+#
+# This service exposes only explicit persona operations.
+# It is not a generic command execution interface.
+
+set -eu
+
+COMMAND="${1:-}"
+PERSONA_ID="${2:-}"
+
+if [ -z "$PERSONA_ID" ]; then
+    echo "Denied: persona ID is required." >&2
+    exit 1
+fi
+
+case "$COMMAND" in
+    status)
+        exec /usr/bin/python3 -m spot persona status "$PERSONA_ID"
+        ;;
+
+    start)
+        exec /usr/bin/python3 -m spot persona start "$PERSONA_ID"
+        ;;
+
+    stop)
+        exec /usr/bin/python3 -m spot persona stop "$PERSONA_ID"
+        ;;
+
+    emergency-stop)
+        exec /usr/bin/python3 -m spot persona emergency-stop "$PERSONA_ID"
+        ;;
+
+    *)
+        echo "Denied: unsupported SPOT persona operation." >&2
+        exit 1
+        ;;
+esac
