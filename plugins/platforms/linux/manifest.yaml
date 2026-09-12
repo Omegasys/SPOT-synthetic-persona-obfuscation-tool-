@@ -1,0 +1,112 @@
+id: platform-linux
+name: SPOT Linux Platform
+version: 0.1.0
+description: Restricted Linux-native platform integration for SPOT.
+author: SPOT Project
+
+entrypoint: plugin.py
+object: PLUGIN
+
+enabled_by_default: false
+
+capabilities:
+  - platform.linux
+  - systemd
+  - sandbox
+  - filesystem-policy
+  - network-policy
+
+permissions:
+  filesystem.scoped: true
+  platform.detect: true
+
+  network: false
+  network.direct: false
+  network.raw: false
+
+  filesystem.unrestricted: false
+  filesystem.personal: false
+
+  credentials: false
+  personal_data: false
+  browser_profile: false
+
+  process.unrestricted: false
+  shell: false
+  arbitrary_commands: false
+
+  root: false
+  privileged: false
+
+security:
+  default_deny: true
+  fail_closed: true
+
+  require_linux: true
+  require_systemd: false
+  require_sandbox: false
+
+  sandbox:
+    default: systemd
+    allowed:
+      - none
+      - systemd
+      - bubblewrap
+      - apparmor
+      - selinux
+      - namespace
+
+  network:
+    allow_direct: false
+    prevent_dns_bypass: true
+    modify_routes: false
+    modify_firewall: false
+    raw_sockets: false
+
+  filesystem:
+    scoped_only: true
+    allow_personal_paths: false
+    allow_credentials: false
+    allow_browser_profiles: false
+
+  process:
+    shell: false
+    arbitrary_commands: false
+    unrestricted_process_control: false
+
+  privilege:
+    root: false
+    setuid: false
+    capabilities: false
+
+  emergency_stop:
+    enabled: true
+    blocks_new_activity: true
+    fail_closed: true
+
+systemd:
+  service: systemd/spot-plugin.service
+  timer: systemd/spot-plugin.timer
+
+  dedicated_user: spot
+  root_required: false
+
+  sandboxing:
+    no_new_privileges: true
+    private_tmp: true
+    private_devices: true
+    protect_system: strict
+    protect_home: true
+
+integration:
+  core_engine: true
+  network_manager: true
+  isolation_manager: true
+  safety_manager: true
+  scheduler: true
+  browser_manager: true
+
+logging:
+  local_only: true
+  redact_sensitive_data: true
+  remote_reporting: false
