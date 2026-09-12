@@ -1,0 +1,57 @@
+app-id: com.spot.SPOT
+
+runtime: org.freedesktop.Platform
+runtime-version: "24.08"
+sdk: org.freedesktop.Sdk
+
+command: spot-flatpak
+
+finish-args:
+  # Network access is required for explicitly permitted SPOT activity.
+  # SPOT's own network manager remains responsible for routing policy.
+  - --share=network
+
+  # Desktop integration.
+  - --share=ipc
+  - --socket=wayland
+  - --socket=fallback-x11
+
+  # Audio/video applications used by controlled media activities may
+  # require these interfaces when such activity is enabled.
+  - --socket=pulseaudio
+
+  # Do not request:
+  #
+  # --filesystem=home
+  # --filesystem=host
+  # --device=all
+  # --system-talk-name=*
+  # --talk-name=org.freedesktop.Flatpak
+  #
+  # These would unnecessarily weaken the sandbox.
+
+command: spot-flatpak
+
+modules:
+  - name: spot
+    buildsystem: simple
+
+    build-commands:
+      - install -Dm0755 spot-flatpak /app/bin/spot-flatpak
+      - mkdir -p /app/lib/python3/site-packages
+      - cp -a spot /app/lib/python3/site-packages/spot
+      - mkdir -p /app/share/spot
+      - cp -a config /app/share/spot/config
+      - cp -a personalities /app/share/spot/personalities
+      - cp -a examples /app/share/spot/examples
+      - install -Dm0644 packaging/flatpak/com.spot.SPOT.desktop /app/share/applications/com.spot.SPOT.desktop
+      - install -Dm0644 packaging/flatpak/com.spot.SPOT.svg /app/share/icons/hicolor/scalable/apps/com.spot.SPOT.svg
+
+    sources:
+      - type: dir
+        path: ../..
+
+      - type: script
+        dest-filename: spot-flatpak
+        commands:
+          - exec python3 -m spot "$@"
