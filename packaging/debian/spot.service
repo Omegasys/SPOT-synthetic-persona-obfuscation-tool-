@@ -1,0 +1,71 @@
+[Unit]
+Description=SPOT Synthetic Persona Obfuscation Tool
+Documentation=https://github.com/example/SPOT
+After=network-online.target
+Wants=network-online.target
+
+# SPOT itself decides whether its configured network backend is healthy.
+# This dependency does not imply that direct networking is allowed.
+
+[Service]
+Type=simple
+
+User=spot
+Group=spot
+
+ExecStart=/usr/bin/python3 -m spot
+ExecStop=/usr/bin/python3 -m spot stop
+
+Restart=on-failure
+RestartSec=10s
+
+# Privilege restrictions
+NoNewPrivileges=true
+CapabilityBoundingSet=
+AmbientCapabilities=
+
+# Filesystem restrictions
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+PrivateDevices=true
+
+# Kernel/system restrictions
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectKernelLogs=true
+ProtectControlGroups=true
+ProtectClock=true
+
+LockPersonality=true
+RestrictRealtime=true
+RestrictSUIDSGID=true
+RestrictNamespaces=true
+
+# Device restrictions
+DevicePolicy=closed
+
+# Network address-family restrictions.
+# SPOT's own network manager remains responsible for routing policy.
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+
+# Resource limits
+TasksMax=128
+MemoryMax=2G
+CPUQuota=80%
+
+# SPOT directories that require write access
+ReadWritePaths=/var/lib/spot
+ReadWritePaths=/run/spot
+ReadWritePaths=/var/log/spot
+
+# Prevent access to arbitrary host credentials.
+InaccessiblePaths=/etc/shadow
+InaccessiblePaths=/etc/gshadow
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
