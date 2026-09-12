@@ -1,0 +1,17 @@
+[Unit]
+Description=SPOT Linux Platform Plugin Timer
+Requires=spot-plugin.service
+After=spot-plugin.service
+
+[Timer]
+OnBootSec=5min
+OnUnitActiveSec=30min
+RandomizedDelaySec=5min
+
+# Do not replay missed activity after a long shutdown.
+Persistent=false
+
+Unit=spot-plugin.service
+
+[Install]
+WantedBy=timers.target
