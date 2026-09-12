@@ -1,0 +1,61 @@
+id: network-whonix
+name: Whonix Networking Plugin
+version: 0.1.0
+
+category: networking
+subcategory: whonix
+
+entrypoint: plugin.py
+
+description: >
+  Provides controlled Whonix networking integration for SPOT.
+
+enabled_by_default: false
+
+capabilities:
+  - network.whonix
+  - network.fail_closed
+  - network.health_check
+
+permissions:
+  network: true
+  filesystem: false
+  process: false
+  browser: false
+  credentials: false
+  personal_data: false
+  qubes_rpc: false
+  privileged: false
+
+security:
+  fail_closed: true
+  direct_fallback: false
+  unrestricted_network: false
+  raw_socket_access: false
+  firewall_modification: false
+  routing_table_modification: false
+  qubes_management: false
+  dom0_access: false
+  credential_access: false
+  personal_data_access: false
+
+whonix:
+  topology: qubes
+  require_gateway: true
+  require_tor: true
+  strict: true
+  default_gateway: sys-whonix
+  default_workstation: anon-whonix
+
+network:
+  use_spot_network_policy: true
+  require_approved_network: true
+  prevent_direct_fallback: true
+  prevent_dns_bypass: true
+
+health:
+  tcp_endpoint_check: true
+  internet_request_check: false
+
+limits:
+  connect_timeout_seconds: 5
