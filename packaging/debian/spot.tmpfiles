@@ -1,0 +1,4 @@
+d /etc/spot 0750 spot spot -
+d /var/lib/spot 0750 spot spot -
+d /run/spot 0750 spot spot -
+d /var/log/spot 0750 spot spot -
