@@ -1,0 +1,133 @@
+# Maintainer: SPOT Project <maintainers@example.invalid>
+
+pkgname=spot
+pkgver=0.1.0
+pkgrel=1
+
+pkgdesc="Synthetic Persona Obfuscation Tool"
+arch=('any')
+
+url="https://github.com/example/SPOT"
+license=('GPL-3.0-or-later')
+
+depends=(
+    'python'
+)
+
+makedepends=(
+    'python-setuptools'
+)
+
+optdepends=(
+    'systemd: service management and sandboxing'
+    'tor: optional privacy-network integration'
+)
+
+source=(
+    "${pkgname}-${pkgver}.tar.gz"
+)
+
+sha256sums=(
+    'SKIP'
+)
+
+backup=(
+    'etc/spot/spot.example.yaml'
+    'etc/spot/network.example.yaml'
+    'etc/spot/browser.example.yaml'
+    'etc/spot/scheduler.example.yaml'
+    'etc/spot/safety.example.yaml'
+    'etc/spot/logging.example.yaml'
+)
+
+prepare() {
+    cd "${srcdir}/${pkgname}-${pkgver}"
+
+    # No source modifications are required.
+    :
+}
+
+build() {
+    cd "${srcdir}/${pkgname}-${pkgver}"
+
+    python -m build --wheel --no-isolation
+}
+
+package() {
+    cd "${srcdir}/${pkgname}-${pkgver}"
+
+    # Python package
+    python -m installer \
+        --destdir="${pkgdir}" \
+        dist/*.whl
+
+    # Configuration examples
+    install -Dm0644 \
+        config/spot.example.yaml \
+        "${pkgdir}/etc/spot/spot.example.yaml"
+
+    install -Dm0644 \
+        config/network.example.yaml \
+        "${pkgdir}/etc/spot/network.example.yaml"
+
+    install -Dm0644 \
+        config/browser.example.yaml \
+        "${pkgdir}/etc/spot/browser.example.yaml"
+
+    install -Dm0644 \
+        config/scheduler.example.yaml \
+        "${pkgdir}/etc/spot/scheduler.example.yaml"
+
+    install -Dm0644 \
+        config/safety.example.yaml \
+        "${pkgdir}/etc/spot/safety.example.yaml"
+
+    install -Dm0644 \
+        config/logging.example.yaml \
+        "${pkgdir}/etc/spot/logging.example.yaml"
+
+    # Personalities
+    install -dm0755 "${pkgdir}/usr/share/spot"
+    cp -a personalities \
+        "${pkgdir}/usr/share/spot/"
+
+    # Examples
+    cp -a examples \
+        "${pkgdir}/usr/share/spot/"
+
+    # Documentation
+    install -dm0755 "${pkgdir}/usr/share/doc/${pkgname}"
+    cp -a docs \
+        "${pkgdir}/usr/share/doc/${pkgname}/"
+
+    install -Dm0644 \
+        README.md \
+        "${pkgdir}/usr/share/doc/${pkgname}/README.md"
+
+    # systemd service
+    install -Dm0644 \
+        packaging/fedora/spot.service \
+        "${pkgdir}/usr/lib/systemd/system/spot.service"
+
+    # tmpfiles
+    install -Dm0644 \
+        packaging/fedora/spot.tmpfiles \
+        "${pkgdir}/usr/lib/tmpfiles.d/spot.conf"
+}
+
+post_install() {
+    # The service is intentionally not enabled or started automatically.
+    #
+    # An administrator should review the SPOT configuration before
+    # enabling the service.
+    :
+}
+
+post_upgrade() {
+    :
+}
+
+post_remove() {
+    # Do not automatically delete persistent SPOT data.
+    :
+}
