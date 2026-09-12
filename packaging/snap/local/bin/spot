@@ -1,0 +1,18 @@
+#!/bin/sh
+set -eu
+
+export SPOT_SNAP="${SNAP:-}"
+export SPOT_CONFIG_DIR="${SPOT_CONFIG_DIR:-${SNAP_USER_DATA}/config}"
+export SPOT_DATA_DIR="${SPOT_DATA_DIR:-${SNAP_USER_DATA}/data}"
+export SPOT_STATE_DIR="${SPOT_STATE_DIR:-${SNAP_USER_DATA}/state}"
+export SPOT_LOG_DIR="${SPOT_LOG_DIR:-${SNAP_USER_DATA}/logs}"
+export SPOT_PLUGIN_DIR="${SPOT_PLUGIN_DIR:-${SNAP_USER_DATA}/plugins}"
+
+mkdir -p \
+    "$SPOT_CONFIG_DIR" \
+    "$SPOT_DATA_DIR" \
+    "$SPOT_STATE_DIR" \
+    "$SPOT_LOG_DIR" \
+    "$SPOT_PLUGIN_DIR"
+
+exec python3 -m spot "$@"
