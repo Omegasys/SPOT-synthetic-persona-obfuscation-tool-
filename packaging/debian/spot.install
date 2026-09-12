@@ -1,0 +1,6 @@
+src/spot usr/lib/python3/dist-packages/spot
+config usr/share/spot/config
+personalities usr/share/spot/personalities
+examples usr/share/doc/spot/examples
+docs usr/share/doc/spot/docs
+systemd/spot.service usr/lib/systemd/system
